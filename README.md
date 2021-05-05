@@ -1,27 +1,18 @@
-# flutter-template
+# Book suggestion service with User Emotion
 
-Flutter & Firebase __Responsive UI__ project template
+## Procedure
+```
+$ flutter create --org com.kkimj.emobook emo_book_flutter
+```
 
-
-## Project architecture
+### Project architecture
 MVVM
 * Model
 * View
 * View model
 
-## Getting started
-```
-$ flutter create --org {com.companyname.packagename} {project_name}
 
-# or
-
-$ flutter create --androidx -t app --org {com.companyname.packagename} -a kotlin -i swift {project_name}
-
-# example
-$ flutter create --org com.user.myapp flutter_project
-```
-
-## Recommended packages
+### Packages
 * [pedantic](https://pub.dev/packages/pedantic)
 * [GetX](https://pub.dev/packages/get)
 * [freezed](https://pub.dev/packages/freezed)
@@ -39,8 +30,6 @@ $ echo include: package:pedantic/analysis_options.yaml > analysis_options.yaml
 ```
 
 
-
-## Tips
 
 ### Build flutter project, chrome 
 ```
