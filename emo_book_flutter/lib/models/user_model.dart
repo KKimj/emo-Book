@@ -1,4 +1,6 @@
 class User {
-  String name;
-  num id;
+  late String name;
+  late num id;
+
+  bool isAnonymous = true;
 }

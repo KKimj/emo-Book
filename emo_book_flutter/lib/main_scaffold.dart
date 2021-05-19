@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'core_packages.dart';
 
+// controllers
+import 'package:emo_book_flutter/controllers/app_controller.dart';
+import 'package:emo_book_flutter/controllers/book_controller.dart';
+import 'package:emo_book_flutter/controllers/user_controller.dart';
+
+// views
 import 'package:emo_book_flutter/views/book_page/book_page.dart';
 import 'package:emo_book_flutter/views/home_page/home_page.dart';
-
-import 'package:emo_book_flutter/viewmodels/book_viewmodel.dart';
-import 'package:emo_book_flutter/viewmodels/user_viewmodel.dart';
 
 class MainScaffold extends StatelessWidget {
   @override
@@ -28,7 +31,8 @@ class MainScaffold extends StatelessWidget {
 class AppBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => BookViewmodel());
-    Get.lazyPut(() => UserViewmodel());
+    Get.put<AppController>(AppController());
+    Get.lazyPut(() => BookController());
+    Get.lazyPut(() => UserController());
   }
 }

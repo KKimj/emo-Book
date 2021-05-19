@@ -1,22 +1,26 @@
 class Book {
   // id
-  String asin, isbn;
+  late String asin, isbn;
 
   // detail
-  String title;
-  String image;
+  late String title;
+  late String image;
 
   // review
-  List<BookReview> bookReviews;
+  late List<BookReview> bookReviews;
+
+  Book({required String title}) {
+    this.title = title;
+  }
 }
 
 class BookReview {
-  String review_text;
-  String reviwer_name;
-  String review_summary;
-  String review_time;
-  String review_image;
-  num review_overall;
-  num review_upvote;
-  num review_downvote;
+  late String review_text;
+  late String reviwer_name;
+  late String review_summary;
+  late String review_time;
+  late String review_image;
+  late num review_overall;
+  late num review_upvote;
+  late num review_downvote;
 }
