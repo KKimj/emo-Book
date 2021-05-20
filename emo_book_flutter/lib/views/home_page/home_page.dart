@@ -1,16 +1,18 @@
-import 'package:emo_book_flutter/datas/dummy_books.dart';
-import 'package:emo_book_flutter/views/widgets/book_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 //widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
+import 'package:emo_book_flutter/views/widgets/book_tile.dart';
+
+//dev
+import 'package:emo_book_flutter/datas/dummy_books.dart';
+import 'package:emo_book_flutter/models/book_model.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
         child: HomePageBody(),
       ),
@@ -21,6 +23,8 @@ class HomePage extends StatelessWidget {
 class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var tmp_book = Book(title: 'Hello World!');
+
     return ScreenTypeLayout.builder(
       mobile: (BuildContext context) {
         return SingleChildScrollView(
@@ -29,7 +33,7 @@ class HomePageBody extends StatelessWidget {
               EmoAppBar(),
               _HomeBanner(),
               _EmotionSeletor(),
-              Flexible(child: _BookListView()),
+              _BookListView(),
             ],
           ),
         );
@@ -95,9 +99,10 @@ class _BookListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var books = DummyMainBooks;
-    return SizedBox(
+    var tmp_book = Book(title: 'Hello World!');
+    // return Container(child: BookTile(tmp_book));
+    return Container(
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[for (var book in books) BookTile(book)],
     ));
   }

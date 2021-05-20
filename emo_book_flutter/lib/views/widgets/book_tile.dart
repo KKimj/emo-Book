@@ -8,15 +8,37 @@ class BookTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: Card(
-        child: ListTile(
-          title: Row(
-            children: [
-              Text(book.title),
-            ],
-          ),
+    return Card(
+      child: InkWell(
+        onDoubleTap: () {
+          print('double tapped');
+        },
+        onLongPress: () {
+          print('onLongPress');
+        },
+        onHover: (_) {
+          print('onHover $_');
+        },
+        onTap: () {
+          print('tapped');
+        },
+        child: Column(
+          children: [
+            ListTile(
+                title: Row(
+              children: [
+                Text(book.title),
+                Text(book.title),
+              ],
+            )),
+            ListTile(
+                title: Row(
+              children: [
+                Text(book.title),
+                Text(book.title),
+              ],
+            )),
+          ],
         ),
       ),
     );
