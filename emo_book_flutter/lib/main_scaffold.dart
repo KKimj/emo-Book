@@ -16,10 +16,19 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     var _getPages = <GetPage>[
       GetPage(name: '/', page: () => HomePage()),
-      GetPage(name: '/book', page: () => BookPage()),
+      GetPage(
+          name: '/book',
+          page: () {
+            late String book_id;
+            book_id = 'test_id';
+            return BookPage(
+              bookid: book_id,
+            );
+          }),
     ];
 
     return GetMaterialApp(
+      title: 'emo-book :: 감정기반 도서 추천 서비스',
       home: HomePage(),
       theme: null,
       getPages: _getPages,
@@ -32,7 +41,10 @@ class AppBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<AppController>(AppController());
-    Get.lazyPut(() => BookController());
-    Get.lazyPut(() => UserController());
+    Get.put<BookController>(BookController());
+    Get.put<UserController>(UserController());
+
+    // Get.lazyPut(() => BookController());
+    // Get.lazyPut(() => UserController());
   }
 }

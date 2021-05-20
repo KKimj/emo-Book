@@ -5,6 +5,7 @@ class Book {
   // detail
   late String title;
   late String image;
+  late String author;
 
   // review
   late List<BookReview> bookReviews;

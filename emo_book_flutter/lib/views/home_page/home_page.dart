@@ -23,8 +23,6 @@ class HomePage extends StatelessWidget {
 class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var tmp_book = Book(title: 'Hello World!');
-
     return ScreenTypeLayout.builder(
       mobile: (BuildContext context) {
         return SingleChildScrollView(
@@ -43,6 +41,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
+              Text('Please Reduce Width!'),
             ],
           ),
         );
@@ -52,6 +51,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
+              Text('Please Reduce Width!'),
             ],
           ),
         );
@@ -61,6 +61,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
+              Text('Please Increase Width!'),
             ],
           ),
         );
@@ -99,11 +100,9 @@ class _BookListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var books = DummyMainBooks;
-    var tmp_book = Book(title: 'Hello World!');
-    // return Container(child: BookTile(tmp_book));
     return Container(
         child: Column(
-      children: <Widget>[for (var book in books) BookTile(book)],
+      children: <Widget>[for (var book in books) BookTile(book: book)],
     ));
   }
 }
