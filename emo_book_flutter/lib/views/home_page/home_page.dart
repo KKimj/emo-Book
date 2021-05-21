@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-//widgets
+// controllers
+import 'package:emo_book_flutter/controllers/emotion_controller.dart';
+
+// widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
 import 'package:emo_book_flutter/views/widgets/book_widgets.dart';
 import 'package:emo_book_flutter/views/widgets/emotion_widgets.dart';
 
-//dev
+// dev
 import 'package:emo_book_flutter/datas/dummy_books.dart';
 import 'package:emo_book_flutter/models/book_model.dart';
 
@@ -93,10 +96,9 @@ class _EmotionSeletor extends StatelessWidget {
         color: Colors.black26,
         child: Center(
             child: Row(
-          children: [
-            Text('Emotion seletion!'),
-            EmotionButton(emotion_title: 'happy'),
-            EmotionButton(emotion_title: 'sad'),
+          children: <Widget>[
+            for (var emotion in EmotionController.to.emotions)
+              EmotionButton(emotion_title: emotion)
           ],
         )),
       ),

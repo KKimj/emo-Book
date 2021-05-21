@@ -1,8 +1,12 @@
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'dart:convert';
 
 // model
 import 'package:emo_book_flutter/models/app_model.dart';
+
+// controllers
+import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
 class DebugController extends GetxController {
   static DebugController get to => Get.find();
@@ -25,5 +29,9 @@ class DebugController extends GetxController {
         'isMobile : ${DebugController.to.isMobile}\n'
         'isAndroid : ${DebugController.to.isAndroid}\n'
         'isIos : ${DebugController.to.isIos}\n';
+  }
+
+  String get EmotionMessage {
+    return EmotionController.to.toJson.toString();
   }
 }

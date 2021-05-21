@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -22,15 +23,19 @@ class EmotionController extends GetxController {
   // map to bool seleted
   EmotionController() {
     emotion_seletions = {for (var emotion in emotions) emotion: false};
+    update();
   }
+  EmotionController.fromJson(Map<String, bool> json) {
+    emotion_seletions = json;
+    update();
+  }
+  Map<String, bool> get toJson => emotion_seletions;
 
   //toggle
-  void toggle_seletion(String emotion) {
+  void toggle_emotion(String emotion) {
     // var seletion = emotion_seletions[emotion]!;
     // emotion_seletions[emotion] = !seletion;
     emotion_seletions[emotion] = !(emotion_seletions[emotion]!);
+    update();
   }
-
-  // toJson fromJson
-  void fromJson(var json) {}
 }

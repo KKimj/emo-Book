@@ -6,6 +6,7 @@ import 'core_packages.dart';
 import 'package:emo_book_flutter/controllers/app_controller.dart';
 import 'package:emo_book_flutter/controllers/book_controller.dart';
 import 'package:emo_book_flutter/controllers/user_controller.dart';
+import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
 // views
 import 'package:emo_book_flutter/views/book_page/book_page.dart';
@@ -48,6 +49,7 @@ class AppBinding implements Bindings {
     Get.put<AppController>(AppController());
     Get.put<BookController>(BookController());
     Get.put<UserController>(UserController());
+    Get.put<EmotionController>(EmotionController());
 
     Get.lazyPut(() => DebugController());
     // Get.lazyPut(() => UserController());
