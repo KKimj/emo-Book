@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
-import 'package:emo_book_flutter/views/widgets/book_tile.dart';
+import 'package:emo_book_flutter/views/widgets/book_widgets.dart';
 
 // controllers
 import 'package:emo_book_flutter/controllers/book_controller.dart';

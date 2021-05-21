@@ -3,7 +3,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 //widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
-import 'package:emo_book_flutter/views/widgets/book_tile.dart';
+import 'package:emo_book_flutter/views/widgets/book_widgets.dart';
+import 'package:emo_book_flutter/views/widgets/emotion_widgets.dart';
 
 //dev
 import 'package:emo_book_flutter/datas/dummy_books.dart';
@@ -90,7 +91,14 @@ class _EmotionSeletor extends StatelessWidget {
       height: 200,
       child: Container(
         color: Colors.black26,
-        child: Center(child: Text('Emotion seletion!')),
+        child: Center(
+            child: Row(
+          children: [
+            Text('Emotion seletion!'),
+            EmotionButton(emotion_title: 'happy'),
+            EmotionButton(emotion_title: 'sad'),
+          ],
+        )),
       ),
     );
   }
