@@ -16,6 +16,15 @@ class AppController extends GetxController {
         watch: watch_breakpoint));
   }
 
+  bool get isWeb => GetPlatform.isWeb;
+  bool get isDesktop => GetPlatform.isDesktop;
+  bool get isMobile => GetPlatform.isMobile;
+  bool get isAndroid => GetPlatform.isAndroid;
+  bool get isIos => GetPlatform.isIOS;
+  bool get isLinux => GetPlatform.isLinux;
+  bool get isMacOS => GetPlatform.isMacOS;
+  bool get isWindows => GetPlatform.isWindows;
+
   void update_ScreenBreakpoints(
       {double? desktop, double? table, double? watch}) {
     ResponsiveSizingConfig.instance.setCustomBreakpoints(ScreenBreakpoints(
