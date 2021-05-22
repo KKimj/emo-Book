@@ -77,11 +77,35 @@ class HomePageBody extends StatelessWidget {
 class _HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
-      child: Container(
-        color: Colors.black26,
-        child: Center(child: Text('Home Banner')),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 300.0,
+      child: Center(
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            Container(
+              width: 400.0,
+              color: Colors.red,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.green,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.yellow,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.orange,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -91,11 +115,12 @@ class _EmotionSeletor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 50,
       child: Container(
         color: Colors.black26,
         child: Center(
-            child: Row(
+            child: ListView(
+          scrollDirection: Axis.horizontal,
           children: <Widget>[
             for (var emotion in EmotionController.to.emotions)
               EmotionButton(emotion_title: emotion)
