@@ -4,12 +4,16 @@ import 'package:responsive_builder/responsive_builder.dart';
 // model
 import 'package:emo_book_flutter/models/app_model.dart';
 
+//themes
+import 'package:emo_book_flutter/themes.dart';
+
 class AppController extends GetxController {
   static AppController get to => Get.find();
 
   var app = App();
 
   AppController() {
+    setLightTheme();
     ResponsiveSizingConfig.instance.setCustomBreakpoints(ScreenBreakpoints(
         desktop: desktop_breakpoint,
         tablet: tablet_breakpoint,
@@ -51,5 +55,17 @@ class AppController extends GetxController {
   set watch_breakpoint(double watch) {
     app.screenBreakpoints.desktop = watch;
     update_ScreenBreakpoints();
+  }
+
+  void setLightTheme() {
+    Get.changeTheme(EmoLightTheme);
+  }
+
+  void setDarkTheme() {
+    Get.changeTheme(EmoDarkTheme);
+  }
+
+  void toggleTheme() {
+    Get.changeTheme(Get.isDarkMode ? EmoLightTheme : EmoDarkTheme);
   }
 }

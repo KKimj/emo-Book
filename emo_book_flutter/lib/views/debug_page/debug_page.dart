@@ -1,3 +1,4 @@
+import 'package:emo_book_flutter/controllers/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,10 +9,14 @@ import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 // widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
 
+// themes
+import 'package:emo_book_flutter/themes.dart';
+
 class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put<DebugController>(DebugController());
+    Get.put<AppController>(AppController());
     Get.put<EmotionController>(EmotionController());
 
     return Scaffold(
@@ -63,9 +68,35 @@ class _DebugPageBody extends StatelessWidget {
         ),
         OutlinedButton(
             onPressed: () {
-              print('OutlinedButton pressed!');
+              Get.changeTheme(ThemeData.dark());
             },
-            child: Text('OutlinedButton')),
+            child: Text('Dark mode!')),
+        OutlinedButton(
+            onPressed: () {
+              Get.changeTheme(ThemeData.light());
+            },
+            child: Text('Light mode!')),
+        OutlinedButton(
+            onPressed: () {
+              Get.changeTheme(
+                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+            },
+            child: Text('Toggle theme!')),
+        OutlinedButton(
+            onPressed: () {
+              Get.changeTheme(EmoDarkTheme);
+            },
+            child: Text('Custom Dark theme!')),
+        OutlinedButton(
+            onPressed: () {
+              Get.changeTheme(EmoLightTheme);
+            },
+            child: Text('Custom Light theme!')),
+        ElevatedButton(
+            onPressed: () {
+              AppController.to.toggleTheme();
+            },
+            child: Text('toggle Emo theme!')),
       ],
     );
   }
