@@ -117,7 +117,6 @@ class _EmotionSeletor extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: Container(
-        color: Colors.black26,
         child: Center(
             child: ListView(
           scrollDirection: Axis.horizontal,

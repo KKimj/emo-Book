@@ -14,6 +14,12 @@ class EmotionButton extends StatelessWidget {
     return GetBuilder<EmotionController>(
       builder: (_) {
         return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: EmotionController.to.emotion_seletions[emotion_title]!
+                    ? Colors.lightBlueAccent
+                    : Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0))),
             onPressed: () {
               EmotionController.to.toggle_emotion(emotion_title);
               print(emotion_title +
@@ -21,8 +27,7 @@ class EmotionButton extends StatelessWidget {
               Get.snackbar(emotion_title,
                   ' is ${EmotionController.to.emotion_seletions[emotion_title]}');
             },
-            child: Text(emotion_title +
-                '\n${EmotionController.to.emotion_seletions[emotion_title]}'));
+            child: Text(emotion_title));
       },
     );
   }
