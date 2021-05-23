@@ -143,3 +143,6 @@ app.*.map.json
 # Firebase
 .firebase/*
 .firebase/hosting.*.cache
+
+# Api Key
+emo_book_flutter/lib/app_keys.dart
