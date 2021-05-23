@@ -1,30 +1,30 @@
-class Book {
-  // id
-  late String asin, isbn;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  // detail
-  late List<String> authors;
-  late String contents;
-  late String datetime;
+part 'book_model.freezed.dart';
+part 'book_model.g.dart';
 
-  late int price;
-  late int sale_price;
+@freezed
+class Book with _$Book {
+  // asin can be null
+  factory Book({
+    String? asin,
+    required String isbn,
 
-  late String publisher;
-  late String status;
+    // detail
+    required List<String> authors,
+    required String contents,
+    required String datetime,
+    required int price,
+    required int sale_price,
+    required String publisher,
+    required String status,
+    required String title,
+    required String thumbnail,
+    required List<String> translators,
+    required String url,
+  }) = _Book;
 
-  late String title;
-  late String thumbnail;
-  late String translators;
-
-  late String url;
-
-  // review
-  late List<BookReview> bookReviews;
-
-  Book({required String title}) {
-    this.title = title;
-  }
+  factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 }
 
 class BookReview {
@@ -37,3 +37,32 @@ class BookReview {
   late num review_upvote;
   late num review_downvote;
 }
+
+// class Book {
+//   // id
+//   late String asin, isbn;
+
+//   // detail
+//   late List<String> authors;
+//   late String contents;
+//   late String datetime;
+
+//   late int price;
+//   late int sale_price;
+
+//   late String publisher;
+//   late String status;
+
+//   late String title;
+//   late String thumbnail;
+//   late String translators;
+
+//   late String url;
+
+//   // review
+//   late List<BookReview> bookReviews;
+
+//   Book({required String title}) {
+//     this.title = title;
+//   }
+// }

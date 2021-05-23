@@ -1,3 +1,4 @@
+import 'package:emo_book_flutter/datas/dummy_books.dart';
 import 'package:flutter/material.dart';
 
 // widgets
@@ -18,7 +19,8 @@ class BookPage extends StatelessWidget {
   final String bookid;
   BookPage({required this.bookid});
 
-  final Book book = BookController.to.get_book_isbn('test');
+  // final Book book = BookController.to.get_book_isbn('test');
+  final Book book = DummyMainBooks[0];
 
   @override
   Widget build(BuildContext context) {

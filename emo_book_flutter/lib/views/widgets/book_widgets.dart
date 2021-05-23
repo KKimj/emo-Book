@@ -30,23 +30,45 @@ class BookTile extends StatelessWidget {
             ListTile(
                 title: Row(
               children: [
-                Text(book.title),
                 Text(
                   book.title,
-                  textAlign: TextAlign.end,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ],
             )),
             ListTile(
-                title: Row(
-              children: [
-                Text(book.title),
-                Text(
-                  book.title,
-                  textAlign: TextAlign.end,
-                ),
-              ],
-            )),
+              title: Row(
+                children: [
+                  Text(book.authors[0]),
+                  paddingAll(10.0),
+                  Text(
+                    book.publisher,
+                    textAlign: TextAlign.end,
+                  ),
+                  paddingAll(10.0),
+                  Text(
+                    book.status,
+                    textAlign: TextAlign.end,
+                  ),
+                  paddingAll(10.0),
+                  Text(
+                    '가격 : ${book.sale_price}',
+                    textAlign: TextAlign.end,
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Row(
+                children: [
+                  Container(child: Image.network(book.thumbnail)),
+                ],
+              ),
+            ),
+            Text(
+              book.datetime,
+              textAlign: TextAlign.end,
+            ),
           ],
         ),
       ),
