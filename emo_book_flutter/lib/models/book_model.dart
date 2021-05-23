@@ -3,9 +3,21 @@ class Book {
   late String asin, isbn;
 
   // detail
+  late List<String> authors;
+  late String contents;
+  late String datetime;
+
+  late int price;
+  late int sale_price;
+
+  late String publisher;
+  late String status;
+
   late String title;
-  late String image;
-  late String author;
+  late String thumbnail;
+  late String translators;
+
+  late String url;
 
   // review
   late List<BookReview> bookReviews;

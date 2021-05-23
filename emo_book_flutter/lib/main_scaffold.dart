@@ -36,7 +36,7 @@ class MainScaffold extends StatelessWidget {
     return GetMaterialApp(
       title: 'emo-book :: 감정기반 도서 추천 서비스',
       home: HomePage(),
-      theme: null,
+      theme: EmoLightTheme,
       getPages: _getPages,
       initialBinding: AppBinding(),
     );
