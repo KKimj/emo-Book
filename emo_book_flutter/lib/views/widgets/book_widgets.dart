@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:emo_book_flutter/views/book_page/book_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,17 +16,24 @@ class BookTile extends StatelessWidget {
     return Card(
       child: InkWell(
         onDoubleTap: () {
-          print('double tapped');
+          // print('double tapped');
+          Get.toNamed('/book/${book.isbn}', arguments: {
+            'isbn': book.isbn,
+            'book': book,
+          });
         },
         onLongPress: () {
-          print('onLongPress');
+          // print('onLongPress');
         },
         onHover: (_) {
-          print('onHover $_');
+          // print('onHover $_');
         },
         onTap: () {
-          print('tapped');
-          Get.toNamed('/book');
+          var isbn = book.isbn.substring(11);
+          Get.toNamed('/book/$isbn', arguments: {
+            'isbn': isbn,
+            'book': book,
+          });
         },
         child: Column(
           children: [

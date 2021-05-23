@@ -32,6 +32,10 @@ dependencies:
   get: ^4.1.4
   freezed_annotation:
   responsive_builder: ^0.4.1
+  url_launcher: ^6.0.4
+
+  easy_web_view:
+    path: ../easy_web_view/
 
 dev_dependencies:
   flutter_test:

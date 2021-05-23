@@ -45,7 +45,9 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
-              Text('Please Reduce Width!'),
+              _HomeBanner(),
+              _EmotionSeletor(),
+              _BookListView(),
             ],
           ),
         );
@@ -55,7 +57,9 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
-              Text('Please Reduce Width!'),
+              _HomeBanner(),
+              _EmotionSeletor(),
+              _BookListView(),
             ],
           ),
         );
