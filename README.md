@@ -36,7 +36,7 @@ $ echo include: package:pedantic/analysis_options.yaml > analysis_options.yaml
 # Build for freezed
 $ flutter pub run build_runner build
 
-$ flutter run -d chrome
+$ flutter run -d chrome --web-renderer html
 # or
 $ flutter run -d web-server --web-port 8080
 ```
@@ -52,7 +52,13 @@ $ flutter test
 
 ### Release Build, chrome
 ```
-$ flutter run -d chrome --release
+$ flutter run -d chrome --release --web-renderer html
+
+or 
+
+$ flutter build web --web-renderer html --release
+
+
 # check /build/web/
 ```
 

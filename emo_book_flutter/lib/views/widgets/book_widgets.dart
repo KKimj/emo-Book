@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// model
+// models
 import 'package:emo_book_flutter/models/book_model.dart';
 
 class BookTile extends StatelessWidget {
@@ -30,30 +32,66 @@ class BookTile extends StatelessWidget {
             ListTile(
                 title: Row(
               children: [
-                Text(
-                  book.title,
-                  style: Theme.of(context).textTheme.headline6,
+                Flexible(
+                  child: Text(
+                    book.title,
+                    overflow: TextOverflow.clip,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
                 ),
               ],
             )),
             ListTile(
-              title: Row(
+              title: Column(
                 children: [
-                  Text(book.authors[0]),
-                  paddingAll(10.0),
-                  Text(
-                    book.publisher,
-                    textAlign: TextAlign.end,
+                  Row(
+                    children: [
+                      Text(
+                        book.authors[0],
+                        style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                      Text(
+                        book.publisher,
+                        style: Theme.of(context).textTheme.subtitle2,
+                        textAlign: TextAlign.end,
+                      ),
+                    ],
                   ),
-                  paddingAll(10.0),
-                  Text(
-                    book.status,
-                    textAlign: TextAlign.end,
+                  Row(
+                    children: [
+                      Text(
+                        book.datetime.substring(0, 10),
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ],
                   ),
-                  paddingAll(10.0),
-                  Text(
-                    '가격 : ${book.sale_price}',
-                    textAlign: TextAlign.end,
+                  Row(
+                    children: [
+                      Text(
+                        book.status,
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                      Text(
+                        '\\${book.price}',
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                      ),
+                      Text(
+                        ' \\${book.sale_price}',
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -61,13 +99,26 @@ class BookTile extends StatelessWidget {
             ListTile(
               title: Row(
                 children: [
-                  Container(child: Image.network(book.thumbnail)),
+                  Container(
+                      child: book.thumbnail.length > 0.0
+                          ? Image.network(book.thumbnail)
+                          : Text('Not Image!')),
+                  Container(
+                    width: 30,
+                  ),
+                  Flexible(
+                    child: Text(
+                      book.contents,
+                      overflow: TextOverflow.clip,
+                      maxLines: 4,
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                  ),
+                  Container(
+                    width: 30,
+                  ),
                 ],
               ),
-            ),
-            Text(
-              book.datetime,
-              textAlign: TextAlign.end,
             ),
           ],
         ),

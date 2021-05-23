@@ -134,9 +134,48 @@ class _BookListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var books = DummyMainBooks;
+
     return Container(
         child: Column(
       children: <Widget>[for (var book in books) BookTile(book: book)],
+    ));
+    return Container(
+        child: Column(
+      children: <Widget>[
+        for (var book in books)
+          Column(
+            children: [
+              Text(
+                book.title,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Container(
+                  child: book.thumbnail.length > 0.0
+                      ? Image.network(book.thumbnail)
+                      : Text('Not Image!')),
+              // Container(child: Image.network(book.thumbnail)),
+              ListTile(
+                title: Row(
+                  children: [
+                    Text(book.authors[0]),
+                    Text(
+                      book.publisher,
+                      textAlign: TextAlign.end,
+                    ),
+                    Text(
+                      book.status,
+                      textAlign: TextAlign.end,
+                    ),
+                    Text(
+                      '가격 : ${book.sale_price}',
+                      textAlign: TextAlign.end,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+      ],
     ));
   }
 }

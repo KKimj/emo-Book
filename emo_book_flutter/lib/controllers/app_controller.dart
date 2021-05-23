@@ -68,4 +68,6 @@ class AppController extends GetxController {
   void toggleTheme() {
     Get.changeTheme(Get.isDarkMode ? EmoLightTheme : EmoDarkTheme);
   }
+
+  bool get isDarkMode => Get.isDarkMode;
 }
