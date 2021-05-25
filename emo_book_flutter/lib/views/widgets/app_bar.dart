@@ -8,21 +8,18 @@ import 'package:emo_book_flutter/controllers/app_controller.dart';
 class EmoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Text('Emo book'),
-      actions: [
-        GetBuilder<AppController>(
-          builder: (_) {
-            return IconButton(
-                onPressed: () => AppController.to.toggleTheme(),
-                icon: Icon(
-                  AppController.to.isDarkMode
-                      ? Icons.dark_mode
-                      : Icons.light_mode,
-                ));
-          },
-        )
-      ],
-    );
+    return GetBuilder<AppController>(builder: (_) {
+      return AppBar(
+        title: Text('Emo book'),
+        actions: [
+          IconButton(
+            onPressed: () => _.toggleTheme(),
+            // icon: _.isDarkMode.value
+            icon:
+                Get.isDarkMode ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
+          ),
+        ],
+      );
+    });
   }
 }

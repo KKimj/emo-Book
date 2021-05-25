@@ -1,6 +1,7 @@
 class App {
   //Screen
   late String title;
+  var isDarkMode;
   _ScreenBreakPoints screenBreakpoints = _ScreenBreakPoints();
 }
 

@@ -37,4 +37,20 @@ class Buttons {
       primary: Colors.white,
       onPrimary: Colors.blue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)));
+
+  static ButtonStyle get emotion_pressed_evlvated_dark =>
+      ElevatedButton.styleFrom(
+          elevation: 1.0,
+          primary: Colors.lightBlue[900],
+          onPrimary: Colors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)));
+
+  static ButtonStyle get emotion_unpressed_evlvated_dark =>
+      ElevatedButton.styleFrom(
+          elevation: 4.0,
+          primary: Colors.grey,
+          onPrimary: Colors.white60,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)));
 }

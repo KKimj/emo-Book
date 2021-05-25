@@ -42,7 +42,7 @@ class MainScaffold extends StatelessWidget {
 class AppBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<AppController>(AppController());
+    Get.put<AppController>(AppController(), permanent: true);
     Get.put<BookController>(BookController());
     Get.put<UserController>(UserController());
     Get.put<EmotionController>(EmotionController());

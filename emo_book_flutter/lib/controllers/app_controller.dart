@@ -1,4 +1,6 @@
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 // model
@@ -13,7 +15,7 @@ class AppController extends GetxController {
   var app = App();
 
   AppController() {
-    setLightTheme();
+    // setLightTheme();
     ResponsiveSizingConfig.instance.setCustomBreakpoints(ScreenBreakpoints(
         desktop: desktop_breakpoint,
         tablet: tablet_breakpoint,
@@ -59,15 +61,21 @@ class AppController extends GetxController {
 
   void setLightTheme() {
     Get.changeTheme(EmoLightTheme);
+
+    Future.delayed(Duration(milliseconds: 50), () {
+      update();
+    });
   }
 
   void setDarkTheme() {
     Get.changeTheme(EmoDarkTheme);
+
+    Future.delayed(Duration(milliseconds: 50), () {
+      update();
+    });
   }
 
   void toggleTheme() {
-    Get.changeTheme(Get.isDarkMode ? EmoLightTheme : EmoDarkTheme);
+    Get.isDarkMode ? setLightTheme() : setDarkTheme();
   }
-
-  bool get isDarkMode => Get.isDarkMode;
 }
