@@ -16,20 +16,13 @@ import 'package:emo_book_flutter/datas/dummy_books.dart';
 
 // ignore: must_be_immutable
 class BookPage extends StatelessWidget {
-  late Book book;
-  late String isbn;
-  BookPage({
-    String? isbn,
-    Book? book,
-  }) {
-    this.isbn = Get.arguments?['isbn'] ??
-        Get.parameters['isbn'] ??
-        DummyMainBooks[0].isbn;
-    // print('${Get.arguments?['isbn']}');
-    // print('${Get.parameters['isbn']}');
-
+  Book book = DummyMainBooks[0];
+  String isbn = DummyMainBooks[0].isbn;
+  BookPage() {
+    isbn =Get.parameters['isbn'] ?? Get.arguments?['isbn'] ?? isbn;
+    book = Get.arguments?['book'] ?? book;
     // todo change to fetch from isbn
-    this.book = Get.arguments?['book'] ?? DummyMainBooks[0];
+    // print('title: '+book.title+'\tisbn: '+isbn);
   }
   @override
   Widget build(BuildContext context) {
@@ -66,6 +59,8 @@ class BookPage extends StatelessWidget {
           'user-agent':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
           'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+            'test':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
         },
         onLoaded: () {},

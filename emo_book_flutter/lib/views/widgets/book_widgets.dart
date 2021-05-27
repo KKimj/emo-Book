@@ -16,11 +16,6 @@ class BookTile extends StatelessWidget {
     return Card(
       child: InkWell(
         onDoubleTap: () {
-          // print('double tapped');
-          Get.toNamed('/book/${book.isbn}', arguments: {
-            'isbn': book.isbn,
-            'book': book,
-          });
         },
         onLongPress: () {
           // print('onLongPress');
@@ -30,6 +25,7 @@ class BookTile extends StatelessWidget {
         },
         onTap: () {
           var isbn = book.isbn.substring(11);
+          // Get.toNamed('/book', arguments: {
           Get.toNamed('/book/$isbn', arguments: {
             'isbn': isbn,
             'book': book,
