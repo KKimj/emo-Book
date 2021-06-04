@@ -25,6 +25,7 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     var _getPages = <GetPage>[
       GetPage(name: '/', page: () => HomePage()),
+      GetPage(name: '/book/', page: () => BookPage()),
       GetPage(name: '/book/:isbn', page: () => BookPage()),
       GetPage(name: '/debug', page: () => DebugPage()),
     ];
