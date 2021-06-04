@@ -19,8 +19,14 @@ class BookPage extends StatelessWidget {
   Book book = DummyMainBooks[0];
   String isbn = DummyMainBooks[0].isbn;
   BookPage() {
-    isbn =Get.parameters['isbn'] ?? Get.arguments?['isbn'] ?? isbn;
-    book = Get.arguments?['book'] ?? book;
+    isbn = Get.parameters['isbn'] ?? Get.arguments?['isbn'] ?? isbn;
+    book = Get.arguments?['book'] ??
+        // BookController.to.get_book_isbn(isbn).then((value) {
+        //   print('${value.title}');
+        //   return value;
+        // }) ??
+        book;
+
     // todo change to fetch from isbn
     // print('title: '+book.title+'\tisbn: '+isbn);
   }
@@ -60,7 +66,7 @@ class BookPage extends StatelessWidget {
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
           'User-Agent':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
-            'test':
+          'test':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
         },
         onLoaded: () {},
