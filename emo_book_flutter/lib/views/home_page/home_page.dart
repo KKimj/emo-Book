@@ -118,6 +118,21 @@ class _HomeBanner extends StatelessWidget {
 class _EmotionSeletor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Wrap(
+        // direction: Axis.horizontal,
+        // alignment: WrapAlignment.start,
+        spacing: 8.0,
+        runSpacing: 4.0,
+        children: <Widget>[
+          for (var emotion in EmotionController.to.emotions)
+            EmotionButton(emotion_title: emotion)
+        ],
+      ),
+    );
+
     return SizedBox(
       height: 50,
       child: Container(
