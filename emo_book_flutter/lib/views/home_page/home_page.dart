@@ -85,7 +85,7 @@ class _HomeBanner extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 20.0),
       height: 300.0,
       child: Center(
-        child: ListView(
+        child: PageView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
@@ -118,7 +118,6 @@ class _HomeBanner extends StatelessWidget {
 class _EmotionSeletor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return Align(
       alignment: Alignment.centerLeft,
       child: Wrap(
