@@ -13,6 +13,12 @@ class EmoAppBar extends StatelessWidget {
         title: Text('Emo book'),
         actions: [
           IconButton(
+            onPressed: () {},
+            icon: Get.isDarkMode
+                ? Icon(Icons.account_circle_outlined)
+                : Icon(Icons.account_circle_rounded),
+          ),
+          IconButton(
             onPressed: () => _.toggleTheme(),
             // icon: _.isDarkMode.value
             icon:
