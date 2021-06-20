@@ -1,8 +1,14 @@
+// dart
+import 'dart:core';
+
+//flutter
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 // controllers
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
+import 'package:emo_book_flutter/controllers/book_controller.dart';
 
 // widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
@@ -118,18 +124,35 @@ class _HomeBanner extends StatelessWidget {
 class _EmotionSeletor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Wrap(
-        // direction: Axis.horizontal,
-        // alignment: WrapAlignment.start,
-        spacing: 8.0,
-        runSpacing: 4.0,
-        children: <Widget>[
-          for (var emotion in EmotionController.to.emotions)
-            EmotionButton(emotion_title: emotion)
-        ],
-      ),
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            child: Text(
+              '    감정 선택',
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Column(
+            children: [
+              Wrap(
+                // direction: Axis.horizontal,
+                // alignment: WrapAlignment.start,
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: <Widget>[
+                  for (var emotion in EmotionController.to.emotions)
+                    EmotionButton(emotion_title: emotion)
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
 
     return SizedBox(
@@ -151,49 +174,30 @@ class _EmotionSeletor extends StatelessWidget {
 class _BookListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var books = DummyMainBooks;
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            child: Text(
+              '    도서 추천',
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+        GetBuilder<BookController>(builder: (_) {
+          return GetBuilder<EmotionController>(builder: (_) {
+            var books =
+                BookController.to.get_dummy_books(EmotionController.to.toJson);
+            // books.shuffle();
 
-    return Container(
-        child: Column(
-      children: <Widget>[for (var book in books) BookTile(book: book)],
-    ));
-    return Container(
-        child: Column(
-      children: <Widget>[
-        for (var book in books)
-          Column(
-            children: [
-              Text(
-                book.title,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Container(
-                  child: book.thumbnail.length > 0.0
-                      ? Image.network(book.thumbnail)
-                      : Text('Not Image!')),
-              // Container(child: Image.network(book.thumbnail)),
-              ListTile(
-                title: Row(
-                  children: [
-                    Text(book.authors[0]),
-                    Text(
-                      book.publisher,
-                      textAlign: TextAlign.end,
-                    ),
-                    Text(
-                      book.status,
-                      textAlign: TextAlign.end,
-                    ),
-                    Text(
-                      '가격 : ${book.sale_price}',
-                      textAlign: TextAlign.end,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+            return Container(
+                child: Column(
+              children: <Widget>[for (var book in books) BookTile(book: book)],
+            ));
+          });
+        }),
       ],
-    ));
+    );
   }
 }
