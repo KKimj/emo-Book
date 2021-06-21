@@ -23,11 +23,13 @@ class _$UserTearOff {
   _User call(
       {required String fire_id,
       String? email,
+      String document_id = "",
       bool isAnonymous = true,
       String name = '익명'}) {
     return _User(
       fire_id: fire_id,
       email: email,
+      document_id: document_id,
       isAnonymous: isAnonymous,
       name: name,
     );
@@ -45,6 +47,7 @@ const $User = _$UserTearOff();
 mixin _$User {
   String get fire_id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String get document_id => throw _privateConstructorUsedError;
   bool get isAnonymous => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
@@ -57,7 +60,12 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String fire_id, String? email, bool isAnonymous, String name});
+  $Res call(
+      {String fire_id,
+      String? email,
+      String document_id,
+      bool isAnonymous,
+      String name});
 }
 
 /// @nodoc
@@ -72,6 +80,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   $Res call({
     Object? fire_id = freezed,
     Object? email = freezed,
+    Object? document_id = freezed,
     Object? isAnonymous = freezed,
     Object? name = freezed,
   }) {
@@ -84,6 +93,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      document_id: document_id == freezed
+          ? _value.document_id
+          : document_id // ignore: cast_nullable_to_non_nullable
+              as String,
       isAnonymous: isAnonymous == freezed
           ? _value.isAnonymous
           : isAnonymous // ignore: cast_nullable_to_non_nullable
@@ -101,7 +114,12 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String fire_id, String? email, bool isAnonymous, String name});
+  $Res call(
+      {String fire_id,
+      String? email,
+      String document_id,
+      bool isAnonymous,
+      String name});
 }
 
 /// @nodoc
@@ -117,6 +135,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   $Res call({
     Object? fire_id = freezed,
     Object? email = freezed,
+    Object? document_id = freezed,
     Object? isAnonymous = freezed,
     Object? name = freezed,
   }) {
@@ -129,6 +148,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      document_id: document_id == freezed
+          ? _value.document_id
+          : document_id // ignore: cast_nullable_to_non_nullable
+              as String,
       isAnonymous: isAnonymous == freezed
           ? _value.isAnonymous
           : isAnonymous // ignore: cast_nullable_to_non_nullable
@@ -147,6 +170,7 @@ class _$_User extends _User {
   _$_User(
       {required this.fire_id,
       this.email,
+      this.document_id = "",
       this.isAnonymous = true,
       this.name = '익명'})
       : super._();
@@ -158,6 +182,9 @@ class _$_User extends _User {
   final String fire_id;
   @override
   final String? email;
+  @JsonKey(defaultValue: "")
+  @override
+  final String document_id;
   @JsonKey(defaultValue: true)
   @override
   final bool isAnonymous;
@@ -167,7 +194,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(fire_id: $fire_id, email: $email, isAnonymous: $isAnonymous, name: $name)';
+    return 'User(fire_id: $fire_id, email: $email, document_id: $document_id, isAnonymous: $isAnonymous, name: $name)';
   }
 
   @override
@@ -179,6 +206,9 @@ class _$_User extends _User {
                     .equals(other.fire_id, fire_id)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.document_id, document_id) ||
+                const DeepCollectionEquality()
+                    .equals(other.document_id, document_id)) &&
             (identical(other.isAnonymous, isAnonymous) ||
                 const DeepCollectionEquality()
                     .equals(other.isAnonymous, isAnonymous)) &&
@@ -191,6 +221,7 @@ class _$_User extends _User {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(fire_id) ^
       const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(document_id) ^
       const DeepCollectionEquality().hash(isAnonymous) ^
       const DeepCollectionEquality().hash(name);
 
@@ -209,6 +240,7 @@ abstract class _User extends User {
   factory _User(
       {required String fire_id,
       String? email,
+      String document_id,
       bool isAnonymous,
       String name}) = _$_User;
   _User._() : super._();
@@ -219,6 +251,8 @@ abstract class _User extends User {
   String get fire_id => throw _privateConstructorUsedError;
   @override
   String? get email => throw _privateConstructorUsedError;
+  @override
+  String get document_id => throw _privateConstructorUsedError;
   @override
   bool get isAnonymous => throw _privateConstructorUsedError;
   @override

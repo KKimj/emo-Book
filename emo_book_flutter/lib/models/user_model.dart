@@ -12,6 +12,7 @@ class User with _$User {
   factory User({
     required String fire_id,
     String? email,
+    @Default('') String document_id,
     @Default(true) bool isAnonymous,
     @Default('익명') String name,
   }) = _User;
