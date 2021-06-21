@@ -14,6 +14,8 @@ import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 // views
 import 'package:emo_book_flutter/views/book_page/book_page.dart';
 import 'package:emo_book_flutter/views/home_page/home_page.dart';
+import 'package:emo_book_flutter/views/user_page/user_page.dart';
+import 'package:emo_book_flutter/views/login_page/login_page.dart';
 
 // dev
 import 'package:emo_book_flutter/controllers/debug_controller.dart';
@@ -28,6 +30,10 @@ class MainScaffold extends StatelessWidget {
       //
       GetPage(name: '/book/', page: () => BookPage()),
       GetPage(name: '/book/:isbn', page: () => BookPage()),
+      //
+      GetPage(name: '/login', page: () => LoginPage()),
+      //
+      GetPage(name: '/user', page: () => UserPage()),
       //
       GetPage(name: '/debug', page: () => DebugPage()),
     ];
@@ -47,8 +53,9 @@ class AppBinding implements Bindings {
   void dependencies() {
     Get.put<AppController>(AppController(), permanent: true);
     Get.put<BookController>(BookController());
-    Get.put<UserController>(UserController());
     Get.put<EmotionController>(EmotionController());
+
+    Get.put<UserController>(UserController());
 
     Get.lazyPut(() => DebugController());
     // Get.lazyPut(() => UserController());
