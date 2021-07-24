@@ -1,0 +1,3 @@
+[submodule "submodules/easy_web_view"]
+	path = submodules/easy_web_view
+	url = https://github.com/KKimj/easy_web_view
