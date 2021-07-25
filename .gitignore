@@ -145,4 +145,4 @@ app.*.map.json
 .firebase/hosting.*.cache
 
 # Api Key
-emo_book_flutter/lib/app_keys.dart
+# emo_book_flutter/lib/app_keys.dart
