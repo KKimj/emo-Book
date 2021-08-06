@@ -207,9 +207,11 @@ packages:
   easy_web_view:
     dependency: "direct main"
     description:
-      path: "../easy_web_view"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "49caaf20ac065382bb4277213b633a10e4f4a22f"
+      url: "https://github.com/KKimj/easy_web_view"
+    source: git
     version: "1.5.0"
   fake_async:
     dependency: transitive

@@ -44,7 +44,7 @@ dependencies:
 
 
   easy_web_view:
-    path: ../easy_web_view/
+    git: https://github.com/KKimj/easy_web_view
   
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,3 @@
-[submodule "submodules/easy_web_view"]
-	path = submodules/easy_web_view
-	url = https://github.com/KKimj/easy_web_view
 [submodule "submodules/emo-Book-keys"]
 	path = submodules/emo-Book-keys
 	url = https://github.com/KKimj/emo-Book-keys
