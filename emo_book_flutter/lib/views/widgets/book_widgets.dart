@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 // models
 import 'package:emo_book_flutter/models/book_model.dart';
 
+// Uis
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 class BookTile extends StatelessWidget {
   final Book book;
   BookTile({required this.book});
@@ -15,8 +18,7 @@ class BookTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onDoubleTap: () {
-        },
+        onDoubleTap: () {},
         onLongPress: () {
           // print('onLongPress');
         },
@@ -123,6 +125,22 @@ class BookTile extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Text('이 책의 추천은 어떠신가요?'),
+            RatingBar.builder(
+              initialRating: 5,
+              minRating: 0.5,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+              onRatingUpdate: (rating) {
+                print(rating);
+              },
             ),
           ],
         ),
