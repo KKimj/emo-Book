@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'core_packages.dart';
 
-// models
-import 'package:emo_book_flutter/models/book_model.dart';
-
-// controllers
+// Controllers
 import 'package:emo_book_flutter/controllers/app_controller.dart';
 import 'package:emo_book_flutter/controllers/book_controller.dart';
 import 'package:emo_book_flutter/controllers/user_controller.dart';
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
-// views
+// Views
 import 'package:emo_book_flutter/views/book_page/book_page.dart';
 import 'package:emo_book_flutter/views/home_page/home_page.dart';
 import 'package:emo_book_flutter/views/user_page/user_page.dart';
 import 'package:emo_book_flutter/views/login_page/login_page.dart';
 
-// dev
+// Dev
 import 'package:emo_book_flutter/controllers/debug_controller.dart';
 import 'package:emo_book_flutter/views/debug_page/debug_page.dart';
-import 'package:emo_book_flutter/datas/dummy_books.dart';
 
 class MainScaffold extends StatelessWidget {
   @override

@@ -1,14 +1,12 @@
 import 'dart:ui';
-
-import 'package:emo_book_flutter/views/book_page/book_page.dart';
 import 'package:flutter/material.dart';
+
+// Packages
 import 'package:get/get.dart';
-
-// models
-import 'package:emo_book_flutter/models/book_model.dart';
-
-// Uis
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+// Models
+import 'package:emo_book_flutter/models/book_model.dart';
 
 class BookTile extends StatelessWidget {
   final Book book;

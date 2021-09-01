@@ -1,9 +1,5 @@
-import 'dart:convert';
+// Packages
 import 'package:get/get.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
-// model
-import 'package:emo_book_flutter/models/app_model.dart';
 
 class EmotionController extends GetxController {
   static EmotionController get to => Get.find();

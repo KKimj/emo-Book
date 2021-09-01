@@ -1,5 +1,6 @@
-import 'package:emo_book_flutter/core_packages.dart';
 import 'package:flutter/material.dart';
+
+// Packages
 import 'package:get/get.dart';
 
 //controllers

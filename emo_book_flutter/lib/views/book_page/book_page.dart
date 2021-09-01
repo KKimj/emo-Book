@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+
+// Packages
 import 'package:get/get.dart';
 import 'package:easy_web_view/easy_web_view.dart';
-// widgets
+
+// Widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
 import 'package:emo_book_flutter/views/widgets/book_widgets.dart';
 
-// controllers
-import 'package:emo_book_flutter/controllers/book_controller.dart';
-
-// models
+// Models
 import 'package:emo_book_flutter/models/book_model.dart';
 
-// dev
+// Dev
 import 'package:emo_book_flutter/datas/dummy_books.dart';
 
 // ignore: must_be_immutable

@@ -1,12 +1,12 @@
-import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
+
+// Packges
 import 'package:responsive_builder/responsive_builder.dart';
 
-// model
+// Models
 import 'package:emo_book_flutter/models/app_model.dart';
 
-//themes
+// Themes
 import 'package:emo_book_flutter/themes.dart';
 
 class AppController extends GetxController {

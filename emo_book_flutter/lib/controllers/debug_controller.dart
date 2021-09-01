@@ -1,11 +1,6 @@
 import 'package:get/get.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'dart:convert';
 
-// model
-import 'package:emo_book_flutter/models/app_model.dart';
-
-// controllers
+// Controllers
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
 class DebugController extends GetxController {
