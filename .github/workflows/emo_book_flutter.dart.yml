@@ -22,7 +22,7 @@ jobs:
         with:
           sdk: ${{ matrix.sdk }}
       - name: Setup environment
-        run: echo | which flutter && echo | which dart
+        run: which flutter
 
       - name: Install dependencies
         run: flutter pub get
