@@ -1,23 +1,18 @@
-// dart
 import 'dart:core';
-
-//flutter
 import 'package:flutter/material.dart';
+
+// Packages
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// controllers
+// Controllers
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 import 'package:emo_book_flutter/controllers/book_controller.dart';
 
-// widgets
+// Widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
 import 'package:emo_book_flutter/views/widgets/book_widgets.dart';
 import 'package:emo_book_flutter/views/widgets/emotion_widgets.dart';
-
-// dev
-import 'package:emo_book_flutter/datas/dummy_books.dart';
-import 'package:emo_book_flutter/models/book_model.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -155,19 +150,19 @@ class _EmotionSeletor extends StatelessWidget {
       ],
     );
 
-    return SizedBox(
-      height: 50,
-      child: Container(
-        child: Center(
-            child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            for (var emotion in EmotionController.to.emotions)
-              EmotionButton(emotion_title: emotion)
-          ],
-        )),
-      ),
-    );
+    // return SizedBox(
+    //   height: 50,
+    //   child: Container(
+    //     child: Center(
+    //         child: ListView(
+    //       scrollDirection: Axis.horizontal,
+    //       children: <Widget>[
+    //         for (var emotion in EmotionController.to.emotions)
+    //           EmotionButton(emotion_title: emotion)
+    //       ],
+    //     )),
+    //   ),
+    // );
   }
 }
 

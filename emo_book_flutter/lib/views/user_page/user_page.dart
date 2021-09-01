@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+
+// Packages
 import 'package:get/get.dart';
 
-// controllers
+// Controllers
 import 'package:emo_book_flutter/controllers/app_controller.dart';
 import 'package:emo_book_flutter/controllers/user_controller.dart';
 
-// widgets
+// Widgets
 import 'package:emo_book_flutter/views/widgets/app_bar.dart';
-
-// themes
-import 'package:emo_book_flutter/themes.dart';
 
 class UserPage extends StatelessWidget {
   @override

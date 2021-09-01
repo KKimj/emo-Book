@@ -23,7 +23,7 @@ class _$UserTearOff {
   _User call(
       {required String fire_id,
       String? email,
-      String document_id = "",
+      String document_id = '',
       bool isAnonymous = true,
       String name = '익명'}) {
     return _User(
@@ -170,7 +170,7 @@ class _$_User extends _User {
   _$_User(
       {required this.fire_id,
       this.email,
-      this.document_id = "",
+      this.document_id = '',
       this.isAnonymous = true,
       this.name = '익명'})
       : super._();
@@ -182,7 +182,7 @@ class _$_User extends _User {
   final String fire_id;
   @override
   final String? email;
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   @override
   final String document_id;
   @JsonKey(defaultValue: true)

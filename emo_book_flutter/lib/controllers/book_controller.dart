@@ -1,15 +1,12 @@
 import 'package:emo_book_flutter/core_packages.dart';
 
-// controllers
-import 'package:emo_book_flutter/controllers/emotion_controller.dart';
-
-// model
+// Models
 import 'package:emo_book_flutter/models/book_model.dart';
 
-// keys
+// Keys
 import 'package:emo_book_flutter/app_keys.dart';
 
-// dev
+// Dev
 import 'package:emo_book_flutter/datas/dummy_books.dart';
 
 class BookController extends GetxController {

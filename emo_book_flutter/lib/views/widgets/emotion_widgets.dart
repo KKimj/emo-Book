@@ -2,10 +2,10 @@ import 'package:emo_book_flutter/controllers/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//controllers
+// Controllers
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
-// styles
+// Styles
 import 'package:emo_book_flutter/styles.dart';
 
 class EmotionButton extends StatelessWidget {
