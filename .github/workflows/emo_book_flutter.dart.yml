@@ -19,6 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          token: ${{ secrets.REPO_TOKEN }}
           submodules: true
       - uses: actions/setup-java@v1
         with:
