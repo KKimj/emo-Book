@@ -23,13 +23,16 @@ jobs:
           sdk: ${{ matrix.sdk }}
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
         working-directory: ${{ env.working-directory }}
+        
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
+        
       - name: Analyze project source
         run: dart analyze
         working-directory: ${{ env.working-directory }}
+        
       - name: Run tests
         run: dart test
         working-directory: ${{ env.working-directory }}
