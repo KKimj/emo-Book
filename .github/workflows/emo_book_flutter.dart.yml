@@ -21,6 +21,8 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{ matrix.sdk }}
+      - name: Setup environment
+        run: echo | which flutter && echo | which dart
 
       - name: Install dependencies
         run: flutter pub get
