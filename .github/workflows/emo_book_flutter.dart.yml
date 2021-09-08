@@ -95,7 +95,7 @@ jobs:
 
   flutter_preview: # Preview Web, when PR to main Branch
     if: ${{ (github.event_name == 'pull_request' || github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch') }}
-    needs: flutter_build
+#     needs: flutter_build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
