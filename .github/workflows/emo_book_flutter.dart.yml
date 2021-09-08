@@ -109,8 +109,8 @@ jobs:
           path: ${{ env.flutter-project-dir }}/build/web
       - name: Preview Web
         run: |
-          file -f ${{ env.flutter-project-dir }}/build/web
           ls -R ${{ env.flutter-project-dir }}
+          file -f ${{ env.flutter-project-dir }}/build/web
         working-directory: ${{ env.flutter-project-dir }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
