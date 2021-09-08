@@ -34,5 +34,8 @@
       "enabled": true,
       "port": 8081
     }
+  },
+  "functions": {
+    "source": "functions"
   }
 }
