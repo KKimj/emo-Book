@@ -118,5 +118,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
-          channelId: ${{ env.GITHUB_EVENT_NAME }}${{ env.GITHUB_SHA }}
+          channelId: "$env.GITHUB_EVENT_NAME$env.GITHUB_SHA"
           projectId: emo-book-kr
