@@ -102,6 +102,8 @@ jobs:
       flutter-project-dir: ./emo_book_flutter
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_TOKEN }}
       - name: Get build_web
         uses: actions/download-artifact@v2
         with:
@@ -109,7 +111,7 @@ jobs:
           path: ${{ env.flutter-project-dir }}/build/web
       - name: Preview Web
         run: |
-          ls -R ${{ env.flutter-project-dir }}
+          ls -R ./
           file -f ${{ env.flutter-project-dir }}/build/web
         working-directory: ${{ env.flutter-project-dir }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
