@@ -35,7 +35,7 @@ jobs:
 
       - name: Setup SDKs
         run: |
-          echo ${{ GITHUB_SHA }}
+          echo "$GITHUB_SHA"
           dart --version
           flutter --version
 
