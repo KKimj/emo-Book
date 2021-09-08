@@ -110,12 +110,7 @@ jobs:
           name: build_web
           path: ${{ env.flutter-project-dir }}/build/web
       - name: Preview Web
-        run: |
-          pwd
-          ls -R ./
-          ls -R /
-          file -f ${{ env.flutter-project-dir }}/build/web
-        working-directory: ${{ env.flutter-project-dir }}
+        run: file -f ${{ env.flutter-project-dir }}/build/web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
