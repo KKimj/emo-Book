@@ -19,6 +19,7 @@ jobs:
         os: [ubuntu-latest] # [windows-latest, self-hosted, macos-latest]
         sdk: [stable] # [stable, beta, dev]
     env:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
       flutter-project-dir: ./emo_book_flutter
     steps:
       - uses: actions/checkout@v2
@@ -32,10 +33,6 @@ jobs:
         with:
           flutter-version: '2.x'
           channel: ${{ matrix.sdk }}
-      - name: GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_SHA"
       - name: Setup SDKs
         run: |
           dart --version
@@ -103,7 +100,6 @@ jobs:
         sdk: [stable] # [stable, beta, dev]
     env:
       flutter-project-dir: ./emo_book_flutter
-      GITHUB_CONTEXT: ${{ toJSON(github) }}
     steps:
       - uses: actions/checkout@v2
         with:
