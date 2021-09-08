@@ -1,21 +1,25 @@
-name: Dart
+name: Flutter
+# Build, Unit Tests And Deployment
 
 on:
   push:
-    branches: [ main ]
+    branches: [ release ]
   pull_request:
     branches: [ main ]
+  pull_request_target:
+    branches: [ main ]
+  workflow_dispatch:
+  repository_dispatch:
 
-# https://github.com/subosito/flutter-action/blob/master/README.md
 jobs:
-  build:
+  flutter_build: # Test and Build Flutter Project
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, self-hosted] # [macos-latest]
-        sdk: [stable] #[stable, beta, dev]
+        os: [ubuntu-latest] # [windows-latest, self-hosted, macos-latest]
+        sdk: [stable] # [stable, beta, dev]
     env:
-      working-directory: ./emo_book_flutter
+      flutter-project-dir: ./emo_book_flutter
     steps:
       - uses: actions/checkout@v2
         with:
@@ -28,23 +32,85 @@ jobs:
         with:
           flutter-version: '2.x'
           channel: ${{ matrix.sdk }}
-      
-      - run: dart --version
-        working-directory: ${{ env.working-directory }}
-      - run: flutter --version
-        working-directory: ${{ env.working-directory }}
+
+      - name: Setup SDKs
+        run: |
+          dart --version
+          flutter --version
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+        working-directory: ${{ env.flutter-project-dir }}
+
+      - name: Analyze project source
+        run: dart analyze --fatal-infos
+        working-directory: ${{ env.flutter-project-dir }}
+        continue-on-error: true
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: ${{ env.working-directory }}
-        
-      - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
-        
-      - name: Analyze project source
-        run: dart analyze --fatal-infos
-        working-directory: ${{ env.working-directory }}
-        
-#       - name: Run tests
-#         run: flutter test
-#         working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.flutter-project-dir }}
+
+      - name: Run tests
+        run: flutter test
+        working-directory: ${{ env.flutter-project-dir }}
+        continue-on-error: true
+
+      - name: Build web
+        run: flutter build web --web-renderer html
+        working-directory: ${{ env.flutter-project-dir }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build_web
+          path: ${{ env.flutter-project-dir }}/build/web/
+
+  flutter_release: # Release Web, only Merged on release Branch
+    if: ${{ github.event_name == 'push' }}
+    needs: flutter_build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # [windows-latest, self-hosted, macos-latest]
+        sdk: [stable] # [stable, beta, dev]
+    env:
+      flutter-project-dir: ./emo_book_flutter
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get build_web
+        uses: actions/download-artifact@v2
+        with:
+          name: build_web
+          path: ${{ env.flutter-project-dir }}/build/web
+      - name: Release Web
+        run: file -f ${{ env.flutter-project-dir }}/build/web
+        working-directory: ${{ env.flutter-project-dir}}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
+          channelId: live
+          projectId: timwork-834b6
+
+  flutter_preview: # Preview Web, when PR to main Branch
+    if: ${{ (github.event_name == 'pull_request' || github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch') }}
+    needs: flutter_build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # [windows-latest, self-hosted, macos-latest]
+        sdk: [stable] # [stable, beta, dev]
+    env:
+      flutter-project-dir: ./emo_book_flutter
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get build_web
+        uses: actions/download-artifact@v2
+        with:
+          name: build_web
+          path: ${{ env.flutter-project-dir }}/build/web
+      - name: Preview Web
+        run: file -f ${{ env.flutter-project-dir }}/build/web
+        working-directory: ${{ env.flutter-project-dir }}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
+          projectId: timwork-834b6
