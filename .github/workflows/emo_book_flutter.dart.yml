@@ -88,7 +88,7 @@ jobs:
         with:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
           channelId: live
-          projectId: timwork-834b6
+          projectId: emo-book-kr
 
   flutter_preview: # Preview Web, when PR to main Branch
     if: ${{ (github.event_name == 'pull_request' || github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch') }}
@@ -114,4 +114,31 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
-          projectId: timwork-834b6
+          projectId: emo-book-kr
+
+flutter_preview_dispatch: # Preview Web, when PR to main Branch
+  if: ${{ github.event_name == 'workflow_dispatch' }}
+  needs: flutter_build
+  runs-on: ${{ matrix.os }}
+  strategy:
+    matrix:
+      os: [ubuntu-latest] # [windows-latest, self-hosted, macos-latest]
+      sdk: [stable] # [stable, beta, dev]
+  env:
+    flutter-project-dir: ./emo_book_flutter
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.REPO_TOKEN }}
+    - name: Get build_web
+      uses: actions/download-artifact@v2
+      with:
+        name: build_web
+        path: ${{ env.flutter-project-dir }}/build/web
+    - name: Preview Web
+      run: file -f ${{ env.flutter-project-dir }}/build/web
+    - uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EMO_BOOK_KR }}'
+        channelId: workflow_dispatch
+        projectId: emo-book-kr
