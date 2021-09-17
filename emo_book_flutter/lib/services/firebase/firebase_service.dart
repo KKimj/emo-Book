@@ -17,7 +17,7 @@ class FirebaseService {
 
   // shared setUserId method
   String? uid;
-  List<String> get userPath => [CollectionKeys.userLagcy, uid ?? ""];
+  List<String> get userPath => [CollectionKeys.users, uid ?? ""];
 
   bool checkKeysForNull(List<String> keys) {
     if (keys.contains(null)) {
@@ -28,7 +28,8 @@ class FirebaseService {
   }
 
   String getPathFromKeys(List<String> keys, {bool addUserPath = false}) {
-    String path = addUserPath ? userPath.followedBy(keys).join("/") : keys.join("/");
+    String path =
+        addUserPath ? userPath.followedBy(keys).join("/") : keys.join("/");
     path = path.replaceAll("//", "/");
     return path;
   }
@@ -36,7 +37,9 @@ class FirebaseService {
   //
   // Firebase Auth
   //
-  Future<Map<String, dynamic>?> _loginWithUserCredential(UserCredential userCredential) async {
+
+  Future<Map<String, dynamic>?> _loginWithUserCredential(
+      UserCredential userCredential) async {
     late Map<String, dynamic> json;
     try {
       uid = userCredential.user!.uid;
@@ -49,10 +52,12 @@ class FirebaseService {
     return json;
   }
 
-  Future<Map<String, dynamic>?> loginWithEmailAndPassword(email, password) async {
+  Future<Map<String, dynamic>?> loginWithEmailAndPassword(
+      email, password) async {
     late Map<String, dynamic> json;
     try {
-      var userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      var userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
       json = (await _loginWithUserCredential(userCredential))!;
       json['isError'] = false;
     } on FirebaseAuthException catch (error) {
@@ -64,7 +69,8 @@ class FirebaseService {
 
   Future<Map<String, dynamic>?> loginWithGoogle() async {
     GoogleAuthProvider googleProvider = GoogleAuthProvider();
-    googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    googleProvider
+        .addScope('https://www.googleapis.com/auth/contacts.readonly');
 
     UserCredential userCredential = await auth.signInWithPopup(googleProvider);
     return _loginWithUserCredential(userCredential);
@@ -82,10 +88,12 @@ class FirebaseService {
     return json;
   }
 
-  Future<Map<String, dynamic>?> signup(email, password, Map<String, dynamic> user) async {
+  Future<Map<String, dynamic>?> signup(
+      email, password, Map<String, dynamic> user) async {
     late Map<String, dynamic> json;
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       uid = userCredential.user!.uid;
       await addDoc(userPath, user);
       json = {'isError': false};
@@ -115,11 +123,14 @@ class FirebaseService {
     if (documentId != null) {
       keys.add(documentId);
       // log("Add Doc ${getPathFromKeys(keys)}");
-      await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);
+      await firestore
+          .doc(getPathFromKeys(keys, addUserPath: addUserPath))
+          .set(json);
       // log("Add Doc Complete");
       return documentId;
     }
-    CollectionReference ref = firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));
+    CollectionReference ref =
+        firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));
     final document = await ref.add(json);
     return (document).id;
   }
@@ -127,7 +138,8 @@ class FirebaseService {
   Future<Map<String, dynamic>?> getDoc(List<String> keys) async {
     late Map<String, dynamic> json;
     try {
-      DocumentSnapshot<Map<String, dynamic>>? document = (await _getDoc(keys)?.get());
+      DocumentSnapshot<Map<String, dynamic>>? document =
+          (await _getDoc(keys)?.get());
       if (document != null) {
         json = (document.data() ?? {})..['documentId'] = document.id;
       }
@@ -138,7 +150,8 @@ class FirebaseService {
   }
 
   Future<List<Map<String, dynamic>>?> getCollection(List<String> keys) async {
-    QuerySnapshot<Map<String, dynamic>>? snapshot = (await _getCollection(keys)?.get());
+    QuerySnapshot<Map<String, dynamic>>? snapshot =
+        (await _getCollection(keys)?.get());
     if (snapshot != null) {
       for (final document in snapshot.docs) {
         (document.data())['documentId'] = document.id;
@@ -166,10 +179,12 @@ class FirebaseService {
     );
   }
 
-  Future<void> updateDoc(List<String> keys, Map<String, dynamic> json, [bool update = false]) async =>
+  Future<void> updateDoc(List<String> keys, Map<String, dynamic> json,
+          [bool update = false]) async =>
       await firestore.doc(getPathFromKeys(keys)).update(json);
 
-  Future<void> deleteDoc(List<String> keys) async => await firestore.doc(getPathFromKeys(keys)).delete();
+  Future<void> deleteDoc(List<String> keys) async =>
+      await firestore.doc(getPathFromKeys(keys)).delete();
 
   //
   // Firebase Storage
@@ -193,4 +208,3 @@ class FirebaseService {
     return json;
   }
 }
-//
