@@ -10,7 +10,7 @@ import 'package:emo_book_flutter/models/app_model.dart';
 import 'package:emo_book_flutter/themes.dart';
 
 class AppController extends GetxController {
-  static AppController get to => Get.find();
+  static AppController get to => Get.find<AppController>();
 
   var app = App();
 
@@ -22,6 +22,7 @@ class AppController extends GetxController {
         watch: watch_breakpoint));
   }
 
+  bool get isInitialized => app.isInitialized;
   bool get isWeb => GetPlatform.isWeb;
   bool get isDesktop => GetPlatform.isDesktop;
   bool get isMobile => GetPlatform.isMobile;
@@ -77,5 +78,10 @@ class AppController extends GetxController {
 
   void toggleTheme() {
     Get.isDarkMode ? setLightTheme() : setDarkTheme();
+  }
+
+  void setInitialized() {
+    app.isInitialized = true;
+    update();
   }
 }
