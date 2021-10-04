@@ -1,3 +1,4 @@
+import 'package:emo_book_flutter/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 
 // Packages
@@ -13,6 +14,11 @@ class EmoAppBar extends StatelessWidget {
       return AppBar(
         title: Text('Emo book'),
         actions: [
+          TextButton(
+              onPressed: () => UserController.to.user.uid != null
+                  ? Get.toNamed('/user/${UserController.to.user.uid}')
+                  : Get.toNamed('/login'),
+              child: Text(UserController.to.user.name)),
           IconButton(
             onPressed: () {
               Get.toNamed('/user');

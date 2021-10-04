@@ -10,7 +10,7 @@ import 'package:emo_book_flutter/models/book_model.dart';
 
 class BookTile extends StatelessWidget {
   final Book book;
-  BookTile({required this.book});
+  const BookTile({Key? key, required this.book}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

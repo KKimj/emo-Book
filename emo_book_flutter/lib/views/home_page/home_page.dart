@@ -34,7 +34,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
-              _HomeBanner(),
+              // _HomeBanner(),
               _EmotionSeletor(),
               _BookListView(),
             ],
@@ -46,7 +46,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
-              _HomeBanner(),
+              // _HomeBanner(),
               _EmotionSeletor(),
               _BookListView(),
             ],
@@ -58,7 +58,7 @@ class HomePageBody extends StatelessWidget {
           child: Column(
             children: [
               EmoAppBar(),
-              _HomeBanner(),
+              // _HomeBanner(),
               _EmotionSeletor(),
               _BookListView(),
             ],
@@ -121,14 +121,21 @@ class _EmotionSeletor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 10,
+        ),
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
             child: Text(
-              '    감정 선택',
+              ' 감정 선택',
               textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.headline4!,
             ),
           ),
+        ),
+        SizedBox(
+          height: 10,
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -171,14 +178,21 @@ class _BookListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 10,
+        ),
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
             child: Text(
-              '    도서 추천',
+              ' 도서 추천',
               textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.headline4!,
             ),
           ),
+        ),
+        SizedBox(
+          height: 10,
         ),
         GetBuilder<BookController>(builder: (_) {
           return GetBuilder<EmotionController>(builder: (_) {
