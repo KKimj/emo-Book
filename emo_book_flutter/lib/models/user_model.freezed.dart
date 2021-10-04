@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_model.dart';
 
@@ -21,17 +22,15 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String fire_id,
+      {String? uid,
       String? email,
-      String document_id = '',
-      bool isAnonymous = true,
-      String name = '익명'}) {
+      String name = '로그인을 해주세요',
+      List<dynamic> profiles = const []}) {
     return _User(
-      fire_id: fire_id,
+      uid: uid,
       email: email,
-      document_id: document_id,
-      isAnonymous: isAnonymous,
       name: name,
+      profiles: profiles,
     );
   }
 
@@ -45,11 +44,10 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String get fire_id => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String get document_id => throw _privateConstructorUsedError;
-  bool get isAnonymous => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  List<dynamic> get profiles => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,12 +58,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call(
-      {String fire_id,
-      String? email,
-      String document_id,
-      bool isAnonymous,
-      String name});
+  $Res call({String? uid, String? email, String name, List<dynamic> profiles});
 }
 
 /// @nodoc
@@ -78,33 +71,28 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? fire_id = freezed,
+    Object? uid = freezed,
     Object? email = freezed,
-    Object? document_id = freezed,
-    Object? isAnonymous = freezed,
     Object? name = freezed,
+    Object? profiles = freezed,
   }) {
     return _then(_value.copyWith(
-      fire_id: fire_id == freezed
-          ? _value.fire_id
-          : fire_id // ignore: cast_nullable_to_non_nullable
-              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      document_id: document_id == freezed
-          ? _value.document_id
-          : document_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      isAnonymous: isAnonymous == freezed
-          ? _value.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      profiles: profiles == freezed
+          ? _value.profiles
+          : profiles // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -114,12 +102,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String fire_id,
-      String? email,
-      String document_id,
-      bool isAnonymous,
-      String name});
+  $Res call({String? uid, String? email, String name, List<dynamic> profiles});
 }
 
 /// @nodoc
@@ -133,33 +116,28 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? fire_id = freezed,
+    Object? uid = freezed,
     Object? email = freezed,
-    Object? document_id = freezed,
-    Object? isAnonymous = freezed,
     Object? name = freezed,
+    Object? profiles = freezed,
   }) {
     return _then(_User(
-      fire_id: fire_id == freezed
-          ? _value.fire_id
-          : fire_id // ignore: cast_nullable_to_non_nullable
-              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      document_id: document_id == freezed
-          ? _value.document_id
-          : document_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      isAnonymous: isAnonymous == freezed
-          ? _value.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      profiles: profiles == freezed
+          ? _value.profiles
+          : profiles // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -168,62 +146,49 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User extends _User {
   _$_User(
-      {required this.fire_id,
-      this.email,
-      this.document_id = '',
-      this.isAnonymous = true,
-      this.name = '익명'})
+      {this.uid, this.email, this.name = '로그인을 해주세요', this.profiles = const []})
       : super._();
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final String fire_id;
+  final String? uid;
   @override
   final String? email;
-  @JsonKey(defaultValue: '')
-  @override
-  final String document_id;
-  @JsonKey(defaultValue: true)
-  @override
-  final bool isAnonymous;
-  @JsonKey(defaultValue: '익명')
+  @JsonKey(defaultValue: '로그인을 해주세요')
   @override
   final String name;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<dynamic> profiles;
 
   @override
   String toString() {
-    return 'User(fire_id: $fire_id, email: $email, document_id: $document_id, isAnonymous: $isAnonymous, name: $name)';
+    return 'User(uid: $uid, email: $email, name: $name, profiles: $profiles)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
-            (identical(other.fire_id, fire_id) ||
-                const DeepCollectionEquality()
-                    .equals(other.fire_id, fire_id)) &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.document_id, document_id) ||
-                const DeepCollectionEquality()
-                    .equals(other.document_id, document_id)) &&
-            (identical(other.isAnonymous, isAnonymous) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAnonymous, isAnonymous)) &&
             (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.profiles, profiles) ||
+                const DeepCollectionEquality()
+                    .equals(other.profiles, profiles)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(fire_id) ^
+      const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(document_id) ^
-      const DeepCollectionEquality().hash(isAnonymous) ^
-      const DeepCollectionEquality().hash(name);
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(profiles);
 
   @JsonKey(ignore: true)
   @override
@@ -232,31 +197,28 @@ class _$_User extends _User {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
+    return _$$_UserToJson(this);
   }
 }
 
 abstract class _User extends User {
   factory _User(
-      {required String fire_id,
+      {String? uid,
       String? email,
-      String document_id,
-      bool isAnonymous,
-      String name}) = _$_User;
+      String name,
+      List<dynamic> profiles}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String get fire_id => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   @override
   String? get email => throw _privateConstructorUsedError;
   @override
-  String get document_id => throw _privateConstructorUsedError;
-  @override
-  bool get isAnonymous => throw _privateConstructorUsedError;
-  @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  List<dynamic> get profiles => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

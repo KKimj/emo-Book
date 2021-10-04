@@ -10,11 +10,10 @@ class User with _$User {
 
   // freezed constructor
   factory User({
-    required String fire_id,
+    String? uid,
     String? email,
-    @Default('') String document_id,
-    @Default(true) bool isAnonymous,
-    @Default('익명') String name,
+    @Default('로그인을 해주세요') String name,
+    @Default([]) List profiles,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
