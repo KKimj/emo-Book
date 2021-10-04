@@ -209,8 +209,10 @@ class FirebaseService {
   }
 
   Future<void> updateDoc(List<String> keys, Map<String, dynamic> json,
-          {bool addUserPath = false}) async {
-    await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).update(json);
+      {bool addUserPath = false}) async {
+    await firestore
+        .doc(getPathFromKeys(keys, addUserPath: addUserPath))
+        .update(json);
   }
 
   Future<void> deleteDoc(List<String> keys) async {
