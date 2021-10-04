@@ -40,10 +40,14 @@ class FirebaseService {
 
   Future<Map<String, dynamic>?> _loginWithUserCredential(
       UserCredential userCredential) async {
-    late Map<String, dynamic> json;
+    late Map<String, dynamic>? json;
     try {
       uid = userCredential.user!.uid;
-      json = (await getDoc(userPath))!;
+      json = await getDoc(userPath);
+      json!['uid'] = userCredential.user!.uid;
+      json['name'] = userCredential.user!.displayName;
+      json['email'] = userCredential.user!.email;
+      await updateDoc(userPath, json);
       json['isError'] = false;
     } on FirebaseAuthException catch (error) {
       uid = null;
@@ -73,6 +77,27 @@ class FirebaseService {
         .addScope('https://www.googleapis.com/auth/contacts.readonly');
 
     UserCredential userCredential = await auth.signInWithPopup(googleProvider);
+    late Map<String, dynamic>? json;
+    try {
+      uid = userCredential.user!.uid;
+      json = await getDoc(userPath);
+      Map<String, dynamic> user = {};
+      user['name'] = userCredential.user!.displayName;
+      user['email'] = userCredential.user!.email;
+      if (json!['isError']) {
+        if (json['code'] == 'not-exists') {
+          uid = null;
+          await addDoc(userPath, user, documentId: userCredential.user!.uid);
+          uid = userCredential.user!.uid;
+        }
+      } else {
+        await updateDoc(userPath, user);
+      }
+      json['isError'] = false;
+    } on FirebaseAuthException catch (error) {
+      uid = null;
+      json = {'error': error, 'code': error.code, 'isError': true};
+    }
     return _loginWithUserCredential(userCredential);
   }
 
@@ -95,8 +120,9 @@ class FirebaseService {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       uid = userCredential.user!.uid;
-      await addDoc(userPath, user);
-      json = {'isError': false};
+      await addDoc([CollectionKeys.users], user, documentId: uid);
+      json = Map.from(user);
+      json['isError'] = false;
     } on FirebaseAuthException catch (error) {
       json = {'error': error, 'code': error.code, 'isError': true};
     }
@@ -122,11 +148,9 @@ class FirebaseService {
       {String? documentId, bool addUserPath = false}) async {
     if (documentId != null) {
       keys.add(documentId);
-      // log("Add Doc ${getPathFromKeys(keys)}");
       await firestore
           .doc(getPathFromKeys(keys, addUserPath: addUserPath))
           .set(json);
-      // log("Add Doc Complete");
       return documentId;
     }
     CollectionReference ref =
@@ -140,11 +164,16 @@ class FirebaseService {
     try {
       DocumentSnapshot<Map<String, dynamic>>? document =
           (await _getDoc(keys)?.get());
-      if (document != null) {
-        json = (document.data() ?? {})..['documentId'] = document.id;
+      if (document != null && document.exists) {
+        json = (document.data() ?? {})
+          ..['documentId'] = document.id
+          ..['isError'] = false;
+      }
+      if (document != null && !document.exists) {
+        throw 'not-exists';
       }
     } catch (error) {
-      json = {'code': error};
+      json = {'code': error, 'isError': true};
     }
     return json;
   }
@@ -180,11 +209,13 @@ class FirebaseService {
   }
 
   Future<void> updateDoc(List<String> keys, Map<String, dynamic> json,
-          [bool update = false]) async =>
-      await firestore.doc(getPathFromKeys(keys)).update(json);
+          {bool addUserPath = false}) async {
+    await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).update(json);
+  }
 
-  Future<void> deleteDoc(List<String> keys) async =>
-      await firestore.doc(getPathFromKeys(keys)).delete();
+  Future<void> deleteDoc(List<String> keys) async {
+    await firestore.doc(getPathFromKeys(keys)).delete();
+  }
 
   //
   // Firebase Storage
