@@ -41,6 +41,13 @@ def recommend(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '3600'
+    }
+
     uid = 202169
     start_idx = 0
     count = 30
@@ -49,7 +56,8 @@ def recommend(request):
 
     request_json = request.get_json()
     if request_json and 'test_table' in request_json:
-        return str(pandas.read_json(get_jsonstring(), orient='table').to_string())
+        result = str(pandas.read_json(get_jsonstring(), orient='table').to_string())
+        return (result, 200, headers)
     
     if request_json:
         if 'uid' in request_json:
@@ -67,13 +75,6 @@ def recommend(request):
         if 'emotions' in request_json:
             emotions = str(request_json['emotions'])
             emotion_list = ast.literal_eval(emotions)
-
-    headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Max-Age': '3600'
-    }
 
     result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
 
