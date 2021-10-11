@@ -75,6 +75,6 @@ def recommend(request):
             emotions = str(request_json['emotions'])
             emotion_list = ast.literal_eval(emotions)
 
-        result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
+    result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
     
     return (result, 200, headers)
