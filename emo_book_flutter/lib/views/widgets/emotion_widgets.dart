@@ -8,6 +8,9 @@ import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 // Styles
 import 'package:emo_book_flutter/styles.dart';
 
+// Messages
+import 'package:emo_book_flutter/messages.dart';
+
 class EmotionButton extends StatelessWidget {
   late final String emotion_title;
 
@@ -33,7 +36,7 @@ class EmotionButton extends StatelessWidget {
                   print(emotion_title +
                       ' is ${EmotionController.to.emotion_seletions[emotion_title]}');
                   Get.snackbar(emotion_title,
-                      ' is ${EmotionController.to.emotion_seletions[emotion_title]}');
+                      (Messages[emotion_title]!.toList()..shuffle()).first);
                 },
                 child: Text(
                   emotion_title,

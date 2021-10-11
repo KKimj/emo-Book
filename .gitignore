@@ -146,3 +146,6 @@ app.*.map.json
 
 # Api Key
 # emo_book_flutter/lib/app_keys.dart
+
+# Python3
+env
