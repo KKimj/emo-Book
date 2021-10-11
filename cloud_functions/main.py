@@ -1,5 +1,6 @@
 import pandas
 import ast
+
 """get_recommendation.ipynb
 Original file is located at
     https://colab.research.google.com/drive/16_0i8Np4HZRD-fSymNlat2EGT3UtInXj
@@ -41,7 +42,7 @@ def recommend(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
     uid = 202169
-    start_num = 0
+    start_idx = 0
     count = 30
     order = 'average_rating'
     emotion_list = []
@@ -57,8 +58,8 @@ def recommend(request):
         if 'count' in request_json:
             count = int(request_json['count'])
             
-        if 'start_num' in request_json:
-            start_num = int(request_json['start_num'])
+        if 'start_idx' in request_json:
+            start_idx = int(request_json['start_idx'])
         
         if 'order' in request_json:
             order = str(request_json['order'])
@@ -66,5 +67,14 @@ def recommend(request):
         if 'emotions' in request_json:
             emotions = str(request_json['emotions'])
             emotion_list = ast.literal_eval(emotions)
-        
-    return str(get_recommendation(user_id = uid, start_num = start_num, count = count, order = order, emotion=emotion_list))
+
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '3600'
+    }
+
+    result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
+
+    return (result, 200, headers)
