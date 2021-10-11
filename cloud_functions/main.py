@@ -43,8 +43,8 @@ def recommend(request):
     """
     headers = {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*',
         'Access-Control-Max-Age': '3600'
     }
 
@@ -54,12 +54,11 @@ def recommend(request):
     order = 'average_rating'
     emotion_list = []
 
-    request_json = request.get_json()
+    request_json = request.get_json(force = True, client = True)
     if request_json and 'test_table' in request_json:
         result = str(pandas.read_json(get_jsonstring(), orient='table').to_string())
-        return (result, 200, headers)
-    
-    if request_json:
+        
+    elif request_json:
         if 'uid' in request_json:
             uid = int(request_json['uid'])
         
@@ -76,6 +75,6 @@ def recommend(request):
             emotions = str(request_json['emotions'])
             emotion_list = ast.literal_eval(emotions)
 
-    result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
-
+        result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
+    
     return (result, 200, headers)
