@@ -53,6 +53,8 @@ def recommend(request):
     count = 30
     order = 'average_rating'
     emotion_list = []
+    result = ['0545044251', '1622664493', '0345538277', '1622664485', '0312362153', '1471161196', '1250029880', '1471116654', '1408857901', '1423101472', '1423183657', '1937053571', '144244228X', '0385341679', '1101128534', '0743476247', '1595144404', '1439136823', '0373775814', '0142418978', '1423134729', '1937053164', '1937053148', '0553381695', '1611186676', '1250045649', '1439136807', '074995552X', '1250001544', '0312984839', '148470987X']
+    result = str(result)
 
     request_json = request.get_json(force = True, silent = True)
     if request_json and 'test_table' in request_json:
@@ -75,6 +77,6 @@ def recommend(request):
             emotions = str(request_json['emotions'])
             emotion_list = ast.literal_eval(emotions)
 
-    result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
+        result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
     
     return (result, 200, headers)
