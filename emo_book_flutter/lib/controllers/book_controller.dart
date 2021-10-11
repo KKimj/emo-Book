@@ -1,4 +1,7 @@
+// Packages
 import 'package:emo_book_flutter/core_packages.dart';
+import 'package:books_finder/books_finder.dart' as books_finder;
+
 
 // Models
 import 'package:emo_book_flutter/models/book_model.dart';
@@ -10,7 +13,7 @@ import 'package:emo_book_flutter/app_keys.dart';
 import 'package:emo_book_flutter/datas/dummy_books.dart';
 
 class BookController extends GetxController {
-  static BookController get to => Get.find();
+  static BookController get to => Get.find<BookController>();
   var bookProver = _BookProvider();
 
   var books = [];
@@ -34,6 +37,17 @@ class BookController extends GetxController {
   List<Book> get_books(Map<String, bool> emotion_seletions) {
     // TODO
     return DummyMainBooks;
+  }
+
+
+  Future<books_finder.BookInfo?> getBookWithIsbn(String isbn) async {
+    List<books_finder.Book> books = await books_finder.queryBooks(
+      isbn,
+      maxResults: 1,
+      orderBy: books_finder.OrderBy.relevance,
+    );
+    books_finder.Book book = books[0];
+    return book.info;
   }
 }
 
