@@ -1,5 +1,5 @@
 import pandas
-import json
+import ast
 """get_recommendation.ipynb
 Original file is located at
     https://colab.research.google.com/drive/16_0i8Np4HZRD-fSymNlat2EGT3UtInXj
@@ -59,6 +59,6 @@ def recommend(request):
 
         if 'emotions' in request_json:
             emotions = str(request_json['emotions'])
-            emotion_list = json.loads(emotions)
+            emotion_list = ast.literal_eval(emotions)
         
     return str(get_recommendation(user_id = uid, start_num = start_num, count = count, order = order, emotion=emotion_list))
