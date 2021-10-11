@@ -22,7 +22,7 @@ def get_recommendation(user_id : str, emotion=None, start_num=0, count=10, order
         filtered_recommend_data = recommend_data
     
     filtered_recommend_data.sort_values(order, ascending=False, inplace=True)
-    recommend_list = recommend_data[str(recommend_data['user_id'])==user_id].reset_index(drop=True).iloc[start_num:start_num+count + 1, 1].values.tolist()
+    recommend_list = recommend_data[recommend_data['user_id']==user_id].reset_index(drop=True).iloc[start_num:start_num+count + 1, 1].values.tolist()
     return recommend_list
 
 def recommend(request):
@@ -34,7 +34,7 @@ def recommend(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
-    uid = "202169"
+    uid = 202169
     start_num = 0
     count = 30
     order = 'average_rating'
@@ -46,7 +46,7 @@ def recommend(request):
     
     if request_json:
         if 'uid' in request_json:
-            uid = str(request_json['uid'])
+            uid = int(request_json['uid'])
         
         if 'count' in request_json:
             count = int(request_json['count'])
@@ -61,4 +61,4 @@ def recommend(request):
             emotions = str(request_json['emotions'])
             emotion_list = json.loads(emotions)
         
-    return str(get_recommendation(uid = uid, start_num = start_num, count = count, order = order, emotion=emotion_list))
+    return str(get_recommendation(user_id = uid, start_num = start_num, count = count, order = order, emotion=emotion_list))
