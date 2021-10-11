@@ -54,7 +54,7 @@ def recommend(request):
     order = 'average_rating'
     emotion_list = []
 
-    request_json = request.get_json(force = True, client = True)
+    request_json = request.get_json(force = True, silent = True)
     if request_json and 'test_table' in request_json:
         result = str(pandas.read_json(get_jsonstring(), orient='table').to_string())
         
