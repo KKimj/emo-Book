@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 4.0.0">
+  <meta name="description" content="emo_book_flutter API docs, for the Dart programming language.">
+  <title>emo_book_flutter - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">emo_book_flutter package</li>
+  </ol>
+  <div class="self-name">emo_book_flutter</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="book-suggestion-service-with-user-emotion">Book suggestion service with User Emotion</h1>
+<h2 id="procedure">Procedure</h2>
+<pre class="language-dart"><code>$ flutter create --org com.kkimj.emobook emo_book_flutter
+</code></pre>
+<h3 id="project-architecture">Project architecture</h3>
+<p>MVVM</p>
+<ul>
+<li>Model</li>
+<li>View</li>
+<li>View model</li>
+</ul>
+<h3 id="packages">Packages</h3>
+<ul>
+<li>
+<p><a href="https://pub.dev/packages/pedantic">pedantic</a></p>
+</li>
+<li>
+<p><a href="https://pub.dev/packages/get">GetX</a></p>
+</li>
+<li>
+<p><a href="https://pub.dev/packages/freezed">freezed</a></p>
+</li>
+<li>
+<p><a href="https://pub.dev/packages/responsive_builder">responsive_builder</a></p>
+</li>
+</ul>
+<pre class="language-dart"><code>$ flutter pub add pedantic
+$ flutter pub add get
+$ flutter pub add freezed
+
+$ flutter pub add responsive_builder
+
+$ echo include: package:pedantic/analysis_options.yaml &gt; analysis_options.yaml
+</code></pre>
+<h3 id="build-flutter-project-chrome">Build flutter project, chrome</h3>
+<pre class="language-dart"><code># Build for freezed
+$ flutter pub run build_runner build
+
+$ flutter run -d chrome --web-renderer html
+# or
+$ flutter run -d web-server --web-port 8080
+</code></pre>
+<h3 id="test-dart-test">Test .dart /test</h3>
+<pre class="language-dart"><code>$ flutter test --machine test/widget_test.dart
+# or just
+$ flutter test
+</code></pre>
+<hr>
+<h3 id="release-build-chrome">Release Build, chrome</h3>
+<pre class="language-dart"><code>$ flutter run -d chrome --release --web-renderer html
+
+or 
+
+$ flutter build web --web-renderer html --release
+
+
+# check /build/web/
+</code></pre>
+<h3 id="firebase-hosting">Firebase hosting</h3>
+<pre class="language-dart"><code>$ firebase init
+
+# Set /build/web for deploy directory to hosting
+
+$ firebase deploy --only hosting
+# or just
+$ firebase deploy
+</code></pre>
+<h3 id="google-book-api">Google Book API</h3>
+<p><a href="https://pub.dev/packages/googleapis">https://pub.dev/packages/googleapis</a></p>
+<p><a href="https://developers.google.com/books">https://developers.google.com/books</a></p>
+<pre class="language-dart"><code>$ curl -X GET "https://dapi.kakao.com/v3/search/book?sort=accuracy&amp;page=1&amp;size=10&amp;target=isbn&amp;query={isbn}" \
+	-H "Authorization: KakaoAK {REST_API_KEY}"
+</code></pre>
+<h3 id="book-serach-api">Book serach API</h3>
+<p><a href="https://pub.dev/packages/books_finder">https://pub.dev/packages/books_finder</a></p>
+<h2 id="build-docs-with-dartdoc">Build Docs with <code>dartdoc</code></h2>
+<h3 id="prerequisite">Prerequisite</h3>
+<pre class="language-dart"><code>$ flutter pub global activate dartdoc
+$ flutter pub global activate dhttpd
+</code></pre>
+<h3 id="bulid">Bulid</h3>
+<pre class="language-dart"><code>$ flutter pub global run dartdoc --input ./emo_book_flutter --output ./docs --favicon ./emo_book_flutter/web/favicon.ico
+</code></pre>
+<h3 id="local-test">Local Test</h3>
+<pre class="language-dart"><code>$ flutter pub global run dhttpd --path ./docs
+</code></pre>
+<p><a href="http://localhost:8080/">http://localhost:8080/</a></p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="app_bar">
+  <span class="name"><a href="views_widgets_app_bar/views_widgets_app_bar-library.html">app_bar</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="app_controller">
+  <span class="name"><a href="controllers_app_controller/controllers_app_controller-library.html">app_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="app_keys">
+  <span class="name"><a href="app_keys/app_keys-library.html">app_keys</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="app_model">
+  <span class="name"><a href="models_app_model/models_app_model-library.html">app_model</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="book_controller">
+  <span class="name"><a href="controllers_book_controller/controllers_book_controller-library.html">book_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="book_model">
+  <span class="name"><a href="models_book_model/models_book_model-library.html">book_model</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="book_page">
+  <span class="name"><a href="views_book_page_book_page/views_book_page_book_page-library.html">book_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="book_widgets">
+  <span class="name"><a href="views_widgets_book_widgets/views_widgets_book_widgets-library.html">book_widgets</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="core_packages">
+  <span class="name"><a href="core_packages/core_packages-library.html">core_packages</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="debug_controller">
+  <span class="name"><a href="controllers_debug_controller/controllers_debug_controller-library.html">debug_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="debug_page">
+  <span class="name"><a href="views_debug_page_debug_page/views_debug_page_debug_page-library.html">debug_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="dummy_books">
+  <span class="name"><a href="datas_dummy_books/datas_dummy_books-library.html">dummy_books</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="emotion_controller">
+  <span class="name"><a href="controllers_emotion_controller/controllers_emotion_controller-library.html">emotion_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="emotion_model">
+  <span class="name"><a href="models_emotion_model/models_emotion_model-library.html">emotion_model</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="emotion_widgets">
+  <span class="name"><a href="views_widgets_emotion_widgets/views_widgets_emotion_widgets-library.html">emotion_widgets</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="firebase_service">
+  <span class="name"><a href="services_firebase_firebase_service/services_firebase_firebase_service-library.html">firebase_service</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="generated_plugin_registrant">
+  <span class="name"><a href="generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="home_page">
+  <span class="name"><a href="views_home_page_home_page/views_home_page_home_page-library.html">home_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="initialbinding">
+  <span class="name"><a href="bindings_initialbinding/bindings_initialbinding-library.html">initialbinding</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="logger">
+  <span class="name"><a href="utils_logger/utils_logger-library.html">logger</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="login_page">
+  <span class="name"><a href="views_login_page_login_page/views_login_page_login_page-library.html">login_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="main">
+  <span class="name"><a href="main/main-library.html">main</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="main_scaffold">
+  <span class="name"><a href="main_scaffold/main_scaffold-library.html">main_scaffold</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="messages">
+  <span class="name"><a href="messages/messages-library.html">messages</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="profile_widget">
+  <span class="name"><a href="views_user_page_profile_widget/views_user_page_profile_widget-library.html">profile_widget</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="recommand_controller">
+  <span class="name"><a href="controllers_recommand_controller/controllers_recommand_controller-library.html">recommand_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="signup_page">
+  <span class="name"><a href="views_signup_page_signup_page/views_signup_page_signup_page-library.html">signup_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="styles">
+  <span class="name"><a href="styles/styles-library.html">styles</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="themes">
+  <span class="name"><a href="themes/themes-library.html">themes</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="tinder_page">
+  <span class="name"><a href="views_tinder_page_tinder_page/views_tinder_page_tinder_page-library.html">tinder_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="user_controller">
+  <span class="name"><a href="controllers_user_controller/controllers_user_controller-library.html">user_controller</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="user_model">
+  <span class="name"><a href="models_user_model/models_user_model-library.html">user_model</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+          <dt id="user_page">
+  <span class="name"><a href="views_user_page_user_page/views_user_page_user_page-library.html">user_page</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li class="self-crumb">emo_book_flutter package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">emo_book_flutter</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="views_widgets_app_bar/views_widgets_app_bar-library.html">app_bar</a></li>
+      <li><a href="controllers_app_controller/controllers_app_controller-library.html">app_controller</a></li>
+      <li><a href="app_keys/app_keys-library.html">app_keys</a></li>
+      <li><a href="models_app_model/models_app_model-library.html">app_model</a></li>
+      <li><a href="controllers_book_controller/controllers_book_controller-library.html">book_controller</a></li>
+      <li><a href="models_book_model/models_book_model-library.html">book_model</a></li>
+      <li><a href="views_book_page_book_page/views_book_page_book_page-library.html">book_page</a></li>
+      <li><a href="views_widgets_book_widgets/views_widgets_book_widgets-library.html">book_widgets</a></li>
+      <li><a href="core_packages/core_packages-library.html">core_packages</a></li>
+      <li><a href="controllers_debug_controller/controllers_debug_controller-library.html">debug_controller</a></li>
+      <li><a href="views_debug_page_debug_page/views_debug_page_debug_page-library.html">debug_page</a></li>
+      <li><a href="datas_dummy_books/datas_dummy_books-library.html">dummy_books</a></li>
+      <li><a href="controllers_emotion_controller/controllers_emotion_controller-library.html">emotion_controller</a></li>
+      <li><a href="models_emotion_model/models_emotion_model-library.html">emotion_model</a></li>
+      <li><a href="views_widgets_emotion_widgets/views_widgets_emotion_widgets-library.html">emotion_widgets</a></li>
+      <li><a href="services_firebase_firebase_service/services_firebase_firebase_service-library.html">firebase_service</a></li>
+      <li><a href="generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></li>
+      <li><a href="views_home_page_home_page/views_home_page_home_page-library.html">home_page</a></li>
+      <li><a href="bindings_initialbinding/bindings_initialbinding-library.html">initialbinding</a></li>
+      <li><a href="utils_logger/utils_logger-library.html">logger</a></li>
+      <li><a href="views_login_page_login_page/views_login_page_login_page-library.html">login_page</a></li>
+      <li><a href="main/main-library.html">main</a></li>
+      <li><a href="main_scaffold/main_scaffold-library.html">main_scaffold</a></li>
+      <li><a href="messages/messages-library.html">messages</a></li>
+      <li><a href="views_user_page_profile_widget/views_user_page_profile_widget-library.html">profile_widget</a></li>
+      <li><a href="controllers_recommand_controller/controllers_recommand_controller-library.html">recommand_controller</a></li>
+      <li><a href="views_signup_page_signup_page/views_signup_page_signup_page-library.html">signup_page</a></li>
+      <li><a href="styles/styles-library.html">styles</a></li>
+      <li><a href="themes/themes-library.html">themes</a></li>
+      <li><a href="views_tinder_page_tinder_page/views_tinder_page_tinder_page-library.html">tinder_page</a></li>
+      <li><a href="controllers_user_controller/controllers_user_controller-library.html">user_controller</a></li>
+      <li><a href="models_user_model/models_user_model-library.html">user_model</a></li>
+      <li><a href="views_user_page_user_page/views_user_page_user_page-library.html">user_page</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    emo_book_flutter
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

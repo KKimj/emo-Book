@@ -73,3 +73,17 @@ $ firebase deploy --only hosting
 $ firebase deploy
 ```
 
+### Google Book API
+
+https://pub.dev/packages/googleapis
+
+https://developers.google.com/books
+
+```
+$ curl -X GET "https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=10&target=isbn&query={isbn}" \
+	-H "Authorization: KakaoAK {REST_API_KEY}"
+```
+
+### Book serach API
+
+https://pub.dev/packages/books_finder
