@@ -125,7 +125,10 @@ $ firebase deploy
 $ flutter pub global activate dhttpd
 </code></pre>
 <h3 id="bulid">Bulid</h3>
-<pre class="language-dart"><code>$ flutter pub global run dartdoc --input ./emo_book_flutter --output ./docs --favicon ./emo_book_flutter/web/favicon.ico
+<pre class="language-dart"><code>$ flutter pub global run dartdoc \
+  --input ./emo_book_flutter --output ./docs \
+  --favicon ./emo_book_flutter/web/favicon.ico \
+  --exclude ./emo_book_flutter/lib/app_keys.dart
 </code></pre>
 <h3 id="local-test">Local Test</h3>
 <pre class="language-dart"><code>$ flutter pub global run dhttpd --path ./docs

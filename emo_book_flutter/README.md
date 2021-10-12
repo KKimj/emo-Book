@@ -100,7 +100,10 @@ $ flutter pub global activate dhttpd
 
 ### Bulid
 ```
-$ flutter pub global run dartdoc --input ./emo_book_flutter --output ./docs --favicon ./emo_book_flutter/web/favicon.ico
+$ flutter pub global run dartdoc \
+  --input ./emo_book_flutter --output ./docs \
+  --favicon ./emo_book_flutter/web/favicon.ico \
+  --exclude ./emo_book_flutter/lib/app_keys.dart
 ```
 
 ### Local Test
