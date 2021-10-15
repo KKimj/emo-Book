@@ -29,6 +29,7 @@ List<String> surprise = [
 ];
 
 Map<String, List<String>> Messages = {
+  'anger': anger,
   'sadness': sadness,
   'fear': fear,
   'joy': joy,
