@@ -1,5 +1,6 @@
 import pandas
-import ast
+import warnings
+warnings.filterwarnings('ignore')
 
 """get_recommendation.ipynb
 Original file is located at
@@ -24,7 +25,7 @@ def get_recommendation(user_id : int, emotions : list = None, start_idx = 0, cou
     """
     recommend_data = pandas.read_json(get_jsonstring(), orient='table')
     if emotions:
-        filtered_recommend_data = recommend_data[recommend_data['emotions'].str.contains('|'.join(emotions), na=True)]
+        filtered_recommend_data = recommend_data[recommend_data['emotion'].str.contains('|'.join(emotions), na=True)]
     else:
         filtered_recommend_data = recommend_data
     
@@ -74,8 +75,19 @@ def recommend(request):
             order = str(request_json['order'])
 
         if 'emotions' in request_json:
-            emotions = str(request_json['emotions'])
-            emotion_list = ast.literal_eval(emotions)
+            emotions_value = int(request_json['emotions'])
+            if emotions_value & 0x01:
+                emotion_list.append('anger')
+            if emotions_value & 0x02:
+                emotion_list.append('fear')
+            if emotions_value & 0x04:
+                emotion_list.append('joy')
+            if emotions_value & 0x08:
+                emotion_list.append('love')
+            if emotions_value & 0x10:
+                emotion_list.append('sadness')
+            if emotions_value & 0x20:
+                emotion_list.append('surprise')
 
         result = str(get_recommendation(user_id = uid, start_idx = start_idx, count = count, order = order, emotions=emotion_list))
     
