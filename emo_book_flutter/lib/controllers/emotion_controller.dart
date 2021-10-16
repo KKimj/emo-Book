@@ -6,14 +6,12 @@ class EmotionController extends GetxController {
 
   late Map<String, bool> emotion_seletions;
   List<String> emotions = [
+    'anger',
+    'love',
     'joy',
-    'trust',
     'surprise',
-    'expectation',
     'sadness',
     'fear',
-    'repulsion',
-    'anger',
   ];
 
   // map to bool seleted
