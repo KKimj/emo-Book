@@ -69,7 +69,7 @@ class _LoginForm extends StatelessWidget {
     if (status != Status.success) {
       await Get.dialog(Text(status));
     } else {
-      Get.offAllNamed('/');
+      Get.offAllNamed('/user');
     }
   }
 }
@@ -185,7 +185,7 @@ class _GoogleSignIn extends StatelessWidget {
             if (status != Status.success) {
               await Get.dialog(Text('구글 계정으로 로그인 실패!'));
             } else {
-              Get.offAllNamed('/');
+              Get.offAllNamed('/user');
             }
           },
         ),

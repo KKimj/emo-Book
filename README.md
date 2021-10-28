@@ -87,3 +87,20 @@ $ curl -X GET "https://dapi.kakao.com/v3/search/book?sort=accuracy&page=1&size=1
 ### Book serach API
 
 https://pub.dev/packages/books_finder
+
+
+### TrobleShotting
+
+```
+Module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 1.5.1, expected version is 1.1.15
+
+// make sure
+ext.kotlin_version = '1.4.32'
+
+
+// from 
+// ext.kotlin_version = '1.3.50'
+
+// ref.
+// https://stackoverflow.com/questions/67699823/module-was-compiled-with-an-incompatible-version-of-kotlin-the-binary-version-o
+```

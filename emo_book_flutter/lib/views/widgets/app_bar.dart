@@ -18,20 +18,29 @@ class EmoAppBar extends StatelessWidget {
               onPressed: () => UserController.to.user.uid != null
                   ? Get.toNamed('/user/${UserController.to.user.uid}')
                   : Get.toNamed('/login'),
-              child: Text(UserController.to.user.name)),
-          IconButton(
+              child: Text('${UserController.to.user.name} 님')),
+          TextButton.icon(
+              onPressed: () {
+                Get.toNamed('/history');
+              },
+              icon: const Icon(Icons.history),
+              label: const Text('나의 평점기록')),
+          TextButton.icon(
             onPressed: () {
               Get.toNamed('/user');
             },
             icon: Get.isDarkMode
-                ? Icon(Icons.account_circle_outlined)
-                : Icon(Icons.account_circle_rounded),
+                ? const Icon(Icons.account_circle_outlined)
+                : const Icon(Icons.account_circle_rounded),
+            label: GetBuilder<UserController>(
+                builder: (_) => Text(_.profile_name)),
           ),
           IconButton(
             onPressed: () => _.toggleTheme(),
             // icon: _.isDarkMode.value
-            icon:
-                Get.isDarkMode ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
+            icon: Get.isDarkMode
+                ? const Icon(Icons.dark_mode)
+                : const Icon(Icons.light_mode),
           ),
         ],
       );

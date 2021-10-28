@@ -1,3 +1,5 @@
+import 'package:emo_book_flutter/views/history_page/history_page.dart';
+import 'package:emo_book_flutter/views/recommand_page/recommand_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'core_packages.dart';
@@ -26,17 +28,52 @@ class MainScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _getPages = <GetPage>[
-      GetPage(name: '/', page: () => HomePage()),
+      GetPage(
+        name: '/',
+        page: () => HomePage(),
+        middlewares: [GlobalMiddleware()],
+      ),
       //
-      GetPage(name: '/book/', page: () => BookPage()),
-      GetPage(name: '/book/:isbn', page: () => BookPage()),
+      GetPage(
+        name: '/book/',
+        page: () => BookPage(),
+        middlewares: [GlobalMiddleware()],
+      ),
+      GetPage(
+        name: '/book/:isbn',
+        page: () => BookPage(),
+        middlewares: [GlobalMiddleware()],
+      ),
       //
       GetPage(name: '/login', page: () => LoginPage()),
       //
       GetPage(name: '/signup', page: () => SignupPage()),
 
-      GetPage(name: '/user', page: () => UserPage()),
-      GetPage(name: '/user/:uid', page: () => UserPage()),
+      GetPage(
+        name: '/user',
+        page: () => UserPage(),
+        middlewares: [GlobalMiddleware()],
+      ),
+      GetPage(
+        name: '/user/:uid',
+        page: () => UserPage(),
+        middlewares: [GlobalMiddleware()],
+      ),
+
+      //
+      GetPage(
+        name: '/recommand',
+        page: () => RecommandPage(),
+        middlewares: [GlobalMiddleware()],
+      ),
+
+      //
+      GetPage(
+        name: '/history',
+        page: () => HistoryPage(),
+        middlewares: [GlobalMiddleware(), HistoryMiddleware()],
+      ),
+
       //
       GetPage(name: '/debug', page: () => DebugPage()),
     ];
@@ -48,9 +85,27 @@ class MainScaffold extends StatelessWidget {
             .dependencies()
             .then((value) => AppController.to.setInitialized());
       },
-      initialRoute: '/',
+      initialRoute: '/login',
       theme: EmoDarkTheme,
       getPages: _getPages,
     );
+  }
+}
+
+class GlobalMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    if (!UserController.to.isLogin) {
+      return const RouteSettings(name: '/login');
+    }
+  }
+}
+
+class HistoryMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    if (!UserController.to.isSetProfile) {
+      return const RouteSettings(name: '/user');
+    }
   }
 }

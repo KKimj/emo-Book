@@ -8,8 +8,6 @@ import 'package:http/http.dart' as http;
 // Controllers
 import 'package:emo_book_flutter/controllers/emotion_controller.dart';
 
-
-
 class DebugController extends GetxController {
   static DebugController get to => Get.find<DebugController>();
 
@@ -59,14 +57,12 @@ class DebugProvider extends GetConnect {
       orderBy: OrderBy.relevance,
     );
     return books;
-  } 
+  }
 
   Future<List<Book>> getDummyBook3() async {
-    final List<Book> books = await queryBooks(
-      '074995552X'
-    );
+    final List<Book> books = await queryBooks('074995552X');
     return books;
-  } 
+  }
 
   Future<BookInfo?> getBookWithIsbn(String isbn) async {
     List<Book> books = await queryBooks(
@@ -78,25 +74,39 @@ class DebugProvider extends GetConnect {
     return book.info;
   }
 
-  Future<Response> getGCloudTest() => get(
-    'https://us-central1-emo-book-kr.cloudfunctions.net/recommand_test');
+  Future<Response> getGCloudTest() =>
+      get('https://us-central1-emo-book-kr.cloudfunctions.net/recommand_test');
 
   Future<Response> getTable() => post(
-    'https://asia-northeast3-emo-book-kr.cloudfunctions.net/recommend_v2',
-    {"test_table": "1"});
+      'https://asia-northeast3-emo-book-kr.cloudfunctions.net/recommend_v2',
+      {"test_table": "1"});
 
-  Future<Response> getAPI() =>  post(
-    "https://asia-northeast3-emo-book-kr.cloudfunctions.net/recommend_v2", {});
+  Future<Response> getAPI() => post(
+      "https://asia-northeast3-emo-book-kr.cloudfunctions.net/recommend_v2",
+      {});
 
-  Future<Response> getJsonTest() =>  get(
-    "https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test");
+  Future<Response> getJsonTest() =>
+      get("https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test");
 
-  
-  Future<Response> getJsonTest2() =>  get(
-    "https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test",
-    query: {"abc" : "ABC"});
-  
-  Future<Response> getJsonTest3() =>  post(
-    "https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test",
-    {"abc" : "ABC"}); 
+  Future<Response> getJsonTest2() =>
+      get("https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test",
+          query: {"abc": "ABC"});
+
+  Future<Response> getJsonTest3() => post(
+      "https://asia-northeast3-emo-book-kr.cloudfunctions.net/json_test",
+      {"abc": "ABC"});
+
+  Future<Response> getAPI3(
+          {int uid = 202169,
+          int count = 30,
+          int start_idx = 0,
+          String order = "confidence"}) =>
+      post(
+          "https://asia-northeast3-emo-book-kr.cloudfunctions.net/recommend_v3",
+          {
+            "uid": uid,
+            "count": count,
+            "start_idx": start_idx,
+            "order": order,
+          });
 }

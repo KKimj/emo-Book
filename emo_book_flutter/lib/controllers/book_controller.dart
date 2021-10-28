@@ -2,7 +2,6 @@
 import 'package:emo_book_flutter/core_packages.dart';
 import 'package:books_finder/books_finder.dart' as books_finder;
 
-
 // Models
 import 'package:emo_book_flutter/models/book_model.dart';
 
@@ -38,7 +37,6 @@ class BookController extends GetxController {
     // TODO
     return DummyMainBooks;
   }
-
 
   Future<books_finder.BookInfo?> getBookWithIsbn(String isbn) async {
     List<books_finder.Book> books = await books_finder.queryBooks(

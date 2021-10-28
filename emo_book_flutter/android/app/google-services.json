@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "97350458002",
+    "project_id": "emo-book-kr",
+    "storage_bucket": "emo-book-kr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97350458002:android:4b102b2460e72d4a81644b",
+        "android_client_info": {
+          "package_name": "com.kkimj.emobook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97350458002-g7pi88mfoo7lhvkk4a6r7fs0he3tn2og.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kkimj.emobook",
+            "certificate_hash": "01b7333a6f00c8d393660bcb8b48303c00983a90"
+          }
+        },
+        {
+          "client_id": "97350458002-gc9dlds5c68062tu0vsebrf54s5b4aqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9Jcrcv5D9pvp6pcXDBooqXnm96aiuZIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97350458002-gc9dlds5c68062tu0vsebrf54s5b4aqs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97350458002-4j971n6809dmqpu9vjav5atm13jgds9r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kkimj.emobook.emoBookFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

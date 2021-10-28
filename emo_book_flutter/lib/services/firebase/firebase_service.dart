@@ -4,6 +4,9 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get/get.dart';
+import 'package:get/get_utils/src/platform/platform.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // Collection Keys
 class CollectionKeys {
@@ -72,11 +75,25 @@ class FirebaseService {
   }
 
   Future<Map<String, dynamic>?> loginWithGoogle() async {
-    GoogleAuthProvider googleProvider = GoogleAuthProvider();
-    googleProvider
-        .addScope('https://www.googleapis.com/auth/contacts.readonly');
+    late UserCredential userCredential;
+    if (GetPlatform.isWeb) {
+      GoogleAuthProvider googleProvider = GoogleAuthProvider();
+      googleProvider
+          .addScope('https://www.googleapis.com/auth/contacts.readonly');
+      userCredential = await auth.signInWithPopup(googleProvider);
+    } else {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    UserCredential userCredential = await auth.signInWithPopup(googleProvider);
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      userCredential = await auth.signInWithCredential(credential);
+    }
+
     late Map<String, dynamic>? json;
     try {
       uid = userCredential.user!.uid;

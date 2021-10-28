@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kkimj.emobook.emo_book_flutter">
+    package="com.kkimj.emobook">
    <application
-        android:label="emo_book_flutter"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Emo-book :: 감정도서추천"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

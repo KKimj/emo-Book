@@ -1,4 +1,4 @@
-package com.kkimj.emobook.emo_book_flutter
+package com.kkimj.emobook
 
 import io.flutter.embedding.android.FlutterActivity
 

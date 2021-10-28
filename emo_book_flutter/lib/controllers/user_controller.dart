@@ -14,6 +14,12 @@ enum Status {
 class UserController extends GetxController {
   static UserController get to => Get.find<UserController>();
   User user = User();
+  String profile_name = '';
+  int profile_uid = 0;
+
+  bool get isLogin => user.name != '로그인을 해주세요';
+
+  bool get isSetProfile => profile_uid != 0;
 
   Future<dynamic> login(
       {String email = '',
@@ -63,6 +69,12 @@ class UserController extends GetxController {
     user = User.fromJson(json);
     String uid = user.uid ?? '';
     await FirebaseService().updateDoc([CollectionKeys.users, uid], json);
+    update();
+  }
+
+  void setProfile(String name, int uid) {
+    profile_name = name;
+    profile_uid = uid;
     update();
   }
 }
